@@ -1,0 +1,24 @@
+/* Coolors Exported Palette - https://coolors.co/e7ead7-151512-f9d79f-6e6949 */
+
+/* CSV */
+e7ead7,151512,f9d79f,6e6949
+
+/* With # */
+#e7ead7, #151512, #f9d79f, #6e6949
+
+/* Array */
+["e7ead7","151512","f9d79f","6e6949"]
+
+/* Object */
+{"Beige":"e7ead7","Night":"151512","Sunset":"f9d79f","Reseda green":"6e6949"}
+
+/* Extended Array */
+[{"name":"Beige","hex":"e7ead7","rgb":[231,234,215],"cmyk":[1,0,8,8],"hsb":[69,8,92],"hsl":[69,31,88],"lab":[92,-4,9]},{"name":"Night","hex":"151512","rgb":[21,21,18],"cmyk":[0,0,14,92],"hsb":[60,14,8],"hsl":[60,8,8],"lab":[7,-1,2]},{"name":"Sunset","hex":"f9d79f","rgb":[249,215,159],"cmyk":[0,14,36,2],"hsb":[37,36,98],"hsl":[37,88,80],"lab":[88,4,32]},{"name":"Reseda green","hex":"6e6949","rgb":[110,105,73],"cmyk":[0,5,34,57],"hsb":[52,34,43],"hsl":[52,20,36],"lab":[44,-3,19]}]
+
+/* XML */
+<palette>
+  <color name="Beige" hex="e7ead7" r="231" g="234" b="215" />
+  <color name="Night" hex="151512" r="21" g="21" b="18" />
+  <color name="Sunset" hex="f9d79f" r="249" g="215" b="159" />
+  <color name="Reseda green" hex="6e6949" r="110" g="105" b="73" />
+</palette>

@@ -1,0 +1,24 @@
+/* Coolors Exported Palette - https://coolors.co/090302-f7ede2-6e6949-f6bd60 */
+
+/* CSV */
+090302,f7ede2,6e6949,f6bd60
+
+/* With # */
+#090302, #f7ede2, #6e6949, #f6bd60
+
+/* Array */
+["090302","f7ede2","6e6949","f6bd60"]
+
+/* Object */
+{"Smoky black":"090302","Linen":"f7ede2","Reseda green":"6e6949","Hunyadi yellow":"f6bd60"}
+
+/* Extended Array */
+[{"name":"Smoky black","hex":"090302","rgb":[9,3,2],"cmyk":[0,67,78,96],"hsb":[9,78,4],"hsl":[9,64,2],"lab":[1,1,1]},{"name":"Linen","hex":"f7ede2","rgb":[247,237,226],"cmyk":[0,4,9,3],"hsb":[31,9,97],"hsl":[31,57,93],"lab":[94,2,7]},{"name":"Reseda green","hex":"6e6949","rgb":[110,105,73],"cmyk":[0,5,34,57],"hsb":[52,34,43],"hsl":[52,20,36],"lab":[44,-3,19]},{"name":"Hunyadi yellow","hex":"f6bd60","rgb":[246,189,96],"cmyk":[0,23,61,4],"hsb":[37,61,96],"hsl":[37,89,67],"lab":[80,11,54]}]
+
+/* XML */
+<palette>
+  <color name="Smoky black" hex="090302" r="9" g="3" b="2" />
+  <color name="Linen" hex="f7ede2" r="247" g="237" b="226" />
+  <color name="Reseda green" hex="6e6949" r="110" g="105" b="73" />
+  <color name="Hunyadi yellow" hex="f6bd60" r="246" g="189" b="96" />
+</palette>
