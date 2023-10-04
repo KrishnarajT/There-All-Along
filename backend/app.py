@@ -12,7 +12,7 @@ class Item(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello World, to: there all along react native app."}
 
 
 @app.get('/favicon.ico', include_in_schema=False)
