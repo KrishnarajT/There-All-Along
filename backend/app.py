@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 # import routers
-from backend.routes import firebase_routes
+from routes import firebase_routes
 
 
 app = FastAPI()
@@ -14,5 +14,3 @@ app.include_router(firebase_routes.router)
 @app.get("/")
 async def root():
     return {"message": "Hello World, to: there all along react native app."}
-
-

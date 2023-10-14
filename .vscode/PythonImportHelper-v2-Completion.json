@@ -265,10 +265,10 @@
     },
     {
         "label": "firebase_routes",
-        "importPath": "backend.routes",
-        "description": "backend.routes",
+        "importPath": "routes",
+        "description": "routes",
         "isExtraImport": true,
-        "detail": "backend.routes",
+        "detail": "routes",
         "documentation": {}
     },
     {
@@ -428,7 +428,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "router = APIRouter(\n    prefix=\"/auth\",\n    tags=[\"auth\"],\n)\n# Importing Firebase stuff. \nimport firebase_admin\nimport pyrebase\nimport json\nfrom firebase_admin import credentials, auth\nfrom fastapi import FastAPI, Request",
+        "peekOfCode": "router = APIRouter(\n    prefix=\"/auth\",\n    tags=[\"auth\"],\n)\n# Importing Firebase stuff.\nimport firebase_admin\nimport pyrebase\nimport json\nfrom firebase_admin import credentials, auth\nfrom fastapi import FastAPI, Request",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
@@ -437,7 +437,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "cred = credentials.Certificate('there-all-along_service_account_keys.json')\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open('firebase_config.json')))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n\treturn {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n\theaders = request.headers",
+        "peekOfCode": "cred = credentials.Certificate(\"there-all-along_service_account_keys.json\")\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
@@ -446,7 +446,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open('firebase_config.json')))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n\treturn {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n\theaders = request.headers\n\tjwt = headers.get('authorization')",
+        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers\n    jwt = headers.get(\"authorization\")",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
@@ -455,115 +455,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open('firebase_config.json')))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n\treturn {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n\theaders = request.headers\n\tjwt = headers.get('authorization')\n\tprint(f\"jwt:{jwt}\")",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\theaders",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\theaders = request.headers\n\tjwt = headers.get('authorization')\n\tprint(f\"jwt:{jwt}\")\n\tuser = auth.verify_id_token(jwt)\n\treturn user[\"uid\"]\n# signup endpoint\n@router.post(\"/signup\", include_in_schema=False)\nasync def signup(request: Request):\n\treq = await request.json()\n\temail = req['email']",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\tjwt",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\tjwt = headers.get('authorization')\n\tprint(f\"jwt:{jwt}\")\n\tuser = auth.verify_id_token(jwt)\n\treturn user[\"uid\"]\n# signup endpoint\n@router.post(\"/signup\", include_in_schema=False)\nasync def signup(request: Request):\n\treq = await request.json()\n\temail = req['email']\n\tpassword = req['password']",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\tuser",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\tuser = auth.verify_id_token(jwt)\n\treturn user[\"uid\"]\n# signup endpoint\n@router.post(\"/signup\", include_in_schema=False)\nasync def signup(request: Request):\n\treq = await request.json()\n\temail = req['email']\n\tpassword = req['password']\n\tif email is None or password is None:\n\t\treturn HTTPException(detail={'message': 'Error! Missing Email or Password'}, status_code=400)",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\treq",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\treq = await request.json()\n\temail = req['email']\n\tpassword = req['password']\n\tif email is None or password is None:\n\t\treturn HTTPException(detail={'message': 'Error! Missing Email or Password'}, status_code=400)\n\ttry:\n\t\tuser = auth.create_user(\n\t\t\temail=email,\n\t\t\tpassword=password\n\t\t)",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\temail",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\temail = req['email']\n\tpassword = req['password']\n\tif email is None or password is None:\n\t\treturn HTTPException(detail={'message': 'Error! Missing Email or Password'}, status_code=400)\n\ttry:\n\t\tuser = auth.create_user(\n\t\t\temail=email,\n\t\t\tpassword=password\n\t\t)\n\t\treturn JSONResponse(content={'message': f'Successfully created user {user.uid}'}, status_code=200)    ",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\tpassword",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\tpassword = req['password']\n\tif email is None or password is None:\n\t\treturn HTTPException(detail={'message': 'Error! Missing Email or Password'}, status_code=400)\n\ttry:\n\t\tuser = auth.create_user(\n\t\t\temail=email,\n\t\t\tpassword=password\n\t\t)\n\t\treturn JSONResponse(content={'message': f'Successfully created user {user.uid}'}, status_code=200)    \n\texcept:",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tuser",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\t\tuser = auth.create_user(\n\t\t\temail=email,\n\t\t\tpassword=password\n\t\t)\n\t\treturn JSONResponse(content={'message': f'Successfully created user {user.uid}'}, status_code=200)    \n\texcept:\n\t\treturn HTTPException(detail={'message': 'Error Creating User'}, status_code=400)\n# login endpoint\n@router.post(\"/login\", include_in_schema=False)\nasync def login(request: Request):",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\treq_json",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\treq_json = await request.json()\n\temail = req_json['email']\n\tpassword = req_json['password']\n\ttry:\n\t\tuser = pb.auth().sign_in_with_email_and_password(email, password)\n\t\tjwt = user['idToken']\n\t\treturn JSONResponse(content={'token': jwt}, status_code=200)\n\texcept:\n\t\treturn HTTPException(detail={'message': 'There was an error logging in'}, status_code=400)",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\temail",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\temail = req_json['email']\n\tpassword = req_json['password']\n\ttry:\n\t\tuser = pb.auth().sign_in_with_email_and_password(email, password)\n\t\tjwt = user['idToken']\n\t\treturn JSONResponse(content={'token': jwt}, status_code=200)\n\texcept:\n\t\treturn HTTPException(detail={'message': 'There was an error logging in'}, status_code=400)",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\tpassword",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\tpassword = req_json['password']\n\ttry:\n\t\tuser = pb.auth().sign_in_with_email_and_password(email, password)\n\t\tjwt = user['idToken']\n\t\treturn JSONResponse(content={'token': jwt}, status_code=200)\n\texcept:\n\t\treturn HTTPException(detail={'message': 'There was an error logging in'}, status_code=400)",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tuser",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\t\tuser = pb.auth().sign_in_with_email_and_password(email, password)\n\t\tjwt = user['idToken']\n\t\treturn JSONResponse(content={'token': jwt}, status_code=200)\n\texcept:\n\t\treturn HTTPException(detail={'message': 'There was an error logging in'}, status_code=400)",
-        "detail": "backend.routes.firebase_routes",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tjwt",
-        "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "\t\tjwt = user['idToken']\n\t\treturn JSONResponse(content={'token': jwt}, status_code=200)\n\texcept:\n\t\treturn HTTPException(detail={'message': 'There was an error logging in'}, status_code=400)",
+        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers\n    jwt = headers.get(\"authorization\")\n    print(f\"jwt:{jwt}\")",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
