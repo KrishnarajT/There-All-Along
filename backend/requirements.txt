@@ -214,7 +214,7 @@ thefuck==3.32
 tinycss2==1.2.1
 tldr==3.2.0
 tomli==2.0.1
-tornado==6.3.2
+tornado==6.3.3
 traitlets==5.9.0
 trove-classifiers==2023.8.8
 typing_extensions==4.8.0
