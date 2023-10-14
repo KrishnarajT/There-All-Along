@@ -33,6 +33,3 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
-backend/there-all-along-firebase-adminsdk-12u1w-1f1cb02522.json
-backend/random.md
-backend/there-all-along_service_account_keys.json

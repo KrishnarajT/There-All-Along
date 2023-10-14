@@ -232,6 +232,14 @@
         "documentation": {}
     },
     {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
         "label": "JSONResponse",
         "importPath": "fastapi.responses",
         "description": "fastapi.responses",
@@ -437,7 +445,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "cred = credentials.Certificate(\"there-all-along_service_account_keys.json\")\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers",
+        "peekOfCode": "cred = credentials.Certificate(\"there-all-along_service_account_keys.json\")\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\", include_in_schema=False)",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
@@ -446,7 +454,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers\n    jwt = headers.get(\"authorization\")",
+        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
@@ -455,7 +463,7 @@
         "kind": 5,
         "importPath": "backend.routes.firebase_routes",
         "description": "backend.routes.firebase_routes",
-        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers\n    jwt = headers.get(\"authorization\")\n    print(f\"jwt:{jwt}\")",
+        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers",
         "detail": "backend.routes.firebase_routes",
         "documentation": {}
     },
@@ -464,7 +472,16 @@
         "kind": 5,
         "importPath": "backend.app",
         "description": "backend.app",
-        "peekOfCode": "app = FastAPI()\napp.include_router(firebase_routes.router)\n# basic routes. \n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World, to: there all along react native app.\"}",
+        "peekOfCode": "app = FastAPI()\nallow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_routes.router)",
+        "detail": "backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "allow_all",
+        "kind": 5,
+        "importPath": "backend.app",
+        "description": "backend.app",
+        "peekOfCode": "allow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_routes.router)\n# basic routes. ",
         "detail": "backend.app",
         "documentation": {}
     },

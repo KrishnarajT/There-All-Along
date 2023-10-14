@@ -25,7 +25,9 @@ pb = pyrebase.initialize_app(json.load(open("firebase_config.json")))
 # ping endpoint
 @router.get("/hello")
 async def root():
-    return {"message": "Hello World, to: there all along react native app."}
+    return {
+        "message": "Hello World, to: there all along react native app, auth section"
+    }
 
 
 @router.post("/ping", include_in_schema=False)
