@@ -8,7 +8,7 @@ const Settings = () => {
 
 	return (
 		<View
-			className="flex flex-row justify-between p-4 px-6 rounded-full shadow-md m-4 align-middle items-center bg-accent_color"
+			className="flex flex-row justify-between p-4 px-6 rounded-full shadow-md m-4 align-middle items-center bg-primary_color-100"
 			style={{
 				borderWidth: 2,
 			}}
