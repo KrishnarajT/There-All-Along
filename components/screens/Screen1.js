@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet, Text, Button, ToastAndroid } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ServerurlContext } from "../../context/ServerurlContext";
 import axios from "axios";
@@ -22,6 +22,15 @@ const Screen1 = (props) => {
 			})
 			.catch((error) => {
 				console.log("error: ", error);
+				// Show an alert that there is some error for 2 seconds.
+				Alert.alert("Server Error!", "Please try Later", [
+					{
+						text: "Sorry!! Error Connecting to the Server, Please Try again later.",
+						onPress: () => console.log("Cancel Pressed"),
+						style: "cancel",
+					},
+					{ text: "OK", onPress: () => console.log("OK Pressed") },
+				]);
 			});
 	}, [serverurl]);
 	return (
