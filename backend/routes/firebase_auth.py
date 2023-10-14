@@ -4,6 +4,8 @@ router = APIRouter(
     prefix="/auth",
     tags=["auth"],
 )
+from utilities.send_email import send_mail
+
 # Importing Firebase stuff.
 
 import firebase_admin
@@ -60,11 +62,12 @@ async def reset_password(request: PasswordResetRequest):
     try:
         # Send password reset email
         link = auth.generate_password_reset_link(email)
-        print(link)
+        send_mail(email, link=link)
         return {"message": f"Password reset link sent to {email}"}
-    except auth.AuthError as e:
+    except Exception as e:
+        print(e)
         return HTTPException(
-            detail={"message": f"Error sending password reset link: {e.message}"},
+            detail={"message": f"Error sending password reset link: {e}"},
             status_code=400
         )
         

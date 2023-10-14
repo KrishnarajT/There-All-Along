@@ -8,11 +8,11 @@ from email.message import EmailMessage
 # getting the login and password from the environment variables on this pc
 
 EMAIL_ADDRESS = "puzzlelists@gmail.com"
-with open("../private/email_pass.txt", "r") as f:
+with open("private/email_pass.txt", "r") as f:
     EMAIL_PASSWORD = f.read()
+    
 
-
-def send_mail(To, Subject="Reset Password Link", Content="Regards, There All Along"):
+def send_mail(To, Subject="Reset Password Link", link = ""):
     """
     :param To: The person's *Gmail* id that you are trying to send to.
     :param Subject: The subject of your mail
@@ -20,7 +20,7 @@ def send_mail(To, Subject="Reset Password Link", Content="Regards, There All Alo
     :return: 0 if failed or error encountered, 1 if successfully sent
     """
 
-    if "@gmail.com" not in To or type(Subject) != str or type(Content) != str:
+    if "@gmail.com" not in To or type(Subject) != str or type(link) != str:
         print(
             "Either the email address is not a gmail address, or the content and Subject is not a String"
         )
@@ -31,7 +31,8 @@ def send_mail(To, Subject="Reset Password Link", Content="Regards, There All Alo
     msg["Subject"] = Subject
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = To
-    msg.set_content(Content)
+    content = f"We get it, Stuff Happens. Here is a link to reset your password. \n\n{link}\n\nRegards\nThere All Along\nKrishnaraj"
+    msg.set_content(content)
 
     # sending the email, by creating an SMTP_SSL instance
     try:
