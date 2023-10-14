@@ -173,6 +173,14 @@
         "documentation": {}
     },
     {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -199,6 +207,14 @@
     },
     {
         "label": "auth",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "db",
         "importPath": "firebase_admin",
         "description": "firebase_admin",
         "isExtraImport": true,
@@ -272,7 +288,15 @@
         "documentation": {}
     },
     {
-        "label": "firebase_routes",
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "firebase_auth",
         "importPath": "routes",
         "description": "routes",
         "isExtraImport": true,
@@ -432,39 +456,66 @@
         "documentation": {}
     },
     {
+        "label": "UserAuthDetails",
+        "kind": 6,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "class UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\")",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
         "label": "router",
         "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
         "peekOfCode": "router = APIRouter(\n    prefix=\"/auth\",\n    tags=[\"auth\"],\n)\n# Importing Firebase stuff.\nimport firebase_admin\nimport pyrebase\nimport json\nfrom firebase_admin import credentials, auth\nfrom fastapi import FastAPI, Request",
-        "detail": "backend.routes.firebase_routes",
+        "detail": "backend.routes.firebase_auth",
         "documentation": {}
     },
     {
         "label": "cred",
         "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "cred = credentials.Certificate(\"there-all-along_service_account_keys.json\")\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\", include_in_schema=False)",
-        "detail": "backend.routes.firebase_routes",
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "cred = credentials.Certificate(\"there-all-along_service_account_keys.json\")\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\nclass UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {",
+        "detail": "backend.routes.firebase_auth",
         "documentation": {}
     },
     {
         "label": "firebase",
         "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):",
-        "detail": "backend.routes.firebase_routes",
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\nclass UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"",
+        "detail": "backend.routes.firebase_auth",
         "documentation": {}
     },
     {
         "label": "pb",
         "kind": 5,
-        "importPath": "backend.routes.firebase_routes",
-        "description": "backend.routes.firebase_routes",
-        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\", include_in_schema=False)\nasync def validate(request: Request):\n    headers = request.headers",
-        "detail": "backend.routes.firebase_routes",
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\nclass UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_db",
+        "description": "backend.routes.firebase_db",
+        "peekOfCode": "router = APIRouter(\n    prefix=\"/db\",\n    tags=[\"db\"],\n)\nref = db.reference(\"/\")",
+        "detail": "backend.routes.firebase_db",
+        "documentation": {}
+    },
+    {
+        "label": "ref",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_db",
+        "description": "backend.routes.firebase_db",
+        "peekOfCode": "ref = db.reference(\"/\")",
+        "detail": "backend.routes.firebase_db",
         "documentation": {}
     },
     {
@@ -472,7 +523,7 @@
         "kind": 5,
         "importPath": "backend.app",
         "description": "backend.app",
-        "peekOfCode": "app = FastAPI()\nallow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_routes.router)",
+        "peekOfCode": "app = FastAPI()\nallow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_auth.router)",
         "detail": "backend.app",
         "documentation": {}
     },
@@ -481,7 +532,7 @@
         "kind": 5,
         "importPath": "backend.app",
         "description": "backend.app",
-        "peekOfCode": "allow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_routes.router)\n# basic routes. ",
+        "peekOfCode": "allow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_auth.router)\n# basic routes. ",
         "detail": "backend.app",
         "documentation": {}
     },

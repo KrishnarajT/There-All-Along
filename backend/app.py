@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 # import routers
-from routes import firebase_routes
+from routes import firebase_auth
 
 app = FastAPI()
 allow_all = ['*']
@@ -18,7 +18,7 @@ app.add_middleware(
    allow_headers=allow_all
 )
  
-app.include_router(firebase_routes.router)
+app.include_router(firebase_auth.router)
 
 # basic routes. 
 @app.get("/")
