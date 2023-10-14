@@ -7,4 +7,3 @@ router = APIRouter(
 )
 
 ref = db.reference("/")
-

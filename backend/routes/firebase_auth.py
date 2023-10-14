@@ -43,6 +43,31 @@ async def validate(request: Request):
     return user["uid"]
 
 
+class PasswordResetRequest(BaseModel):
+    email: str
+
+# Endpoint for password reset request
+@router.post("/reset_password")
+async def reset_password(request: PasswordResetRequest):
+    email = request.email
+
+    if email is None:
+        return HTTPException(
+            detail={"message": "Error! Missing Email"},
+            status_code=400
+        )
+
+    try:
+        # Send password reset email
+        link = auth.generate_password_reset_link(email)
+        print(link)
+        return {"message": f"Password reset link sent to {email}"}
+    except auth.AuthError as e:
+        return HTTPException(
+            detail={"message": f"Error sending password reset link: {e.message}"},
+            status_code=400
+        )
+        
 # signup endpoint
 @router.post("/signup")
 async def signup(userAuthDetails: UserAuthDetails):
@@ -84,3 +109,4 @@ async def login(userAuthDetails: UserAuthDetails):
         return HTTPException(
             detail={"message": "There was an error logging in"}, status_code=400
         )
+        
