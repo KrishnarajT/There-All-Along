@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Su-Banavu",
-    "slug": "Su-Banavu",
+    "name": "There All Along",
+    "slug": "There All Along",
     "version": "1.0.0",
-    "orientation": "default",
-    "icon": "./assets/adaptive-icon.png",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
