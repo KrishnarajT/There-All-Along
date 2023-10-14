@@ -31,7 +31,7 @@ colorama==0.4.6
 comm==0.1.4
 contourpy==1.1.0
 coverage==6.5.0
-cryptography==41.0.3
+cryptography==41.0.4
 css-parser==1.0.9
 cssselect==1.2.0
 cycler==0.11.0
