@@ -1,0 +1,600 @@
+[
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "pathlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "utilities.send_email",
+        "description": "utilities.send_email",
+        "isExtraImport": true,
+        "detail": "utilities.send_email",
+        "documentation": {}
+    },
+    {
+        "label": "firebase_admin",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "credentials",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "auth",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "pyrebase",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyrebase",
+        "description": "pyrebase",
+        "detail": "pyrebase",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "FileResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi.exceptions",
+        "description": "fastapi.exceptions",
+        "isExtraImport": true,
+        "detail": "fastapi.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "smtplib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "smtplib",
+        "description": "smtplib",
+        "detail": "smtplib",
+        "documentation": {}
+    },
+    {
+        "label": "EmailMessage",
+        "importPath": "email.message",
+        "description": "email.message",
+        "isExtraImport": true,
+        "detail": "email.message",
+        "documentation": {}
+    },
+    {
+        "label": "firebase_auth",
+        "importPath": "routes",
+        "description": "routes",
+        "isExtraImport": true,
+        "detail": "routes",
+        "documentation": {}
+    },
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "backend.AppEnv.bin.activate_this",
+        "description": "backend.AppEnv.bin.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "backend.AppEnv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "firestore_adminCallTransformer",
+        "kind": 6,
+        "importPath": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "description": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "peekOfCode": "class firestore_adminCallTransformer(cst.CSTTransformer):\n    CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')\n    METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {\n        'create_database': ('parent', 'database', 'database_id', ),\n        'create_index': ('parent', 'index', ),\n        'delete_index': ('name', ),\n        'export_documents': ('name', 'collection_ids', 'output_uri_prefix', ),\n        'get_database': ('name', ),\n        'get_field': ('name', ),\n        'get_index': ('name', ),",
+        "detail": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "partition",
+        "kind": 2,
+        "importPath": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "description": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "peekOfCode": "def partition(\n    predicate: Callable[[Any], bool],\n    iterator: Sequence[Any]\n) -> Tuple[List[Any], List[Any]]:\n    \"\"\"A stable, out-of-place partition.\"\"\"\n    results = ([], [])\n    for i in iterator:\n        results[int(predicate(i))].append(i)\n    # Returns trueList, falseList\n    return results[1], results[0]",
+        "detail": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "fix_files",
+        "kind": 2,
+        "importPath": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "description": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "peekOfCode": "def fix_files(\n    in_dir: pathlib.Path,\n    out_dir: pathlib.Path,\n    *,\n    transformer=firestore_adminCallTransformer(),\n):\n    \"\"\"Duplicate the input dir to the output dir, fixing file method calls.\n    Preconditions:\n    * in_dir is a real directory\n    * out_dir is a real, empty directory",
+        "detail": "backend.AppEnv.bin.fixup_firestore_admin_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "firestoreCallTransformer",
+        "kind": 6,
+        "importPath": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "description": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "peekOfCode": "class firestoreCallTransformer(cst.CSTTransformer):\n    CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')\n    METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {\n        'batch_get_documents': ('database', 'documents', 'mask', 'transaction', 'new_transaction', 'read_time', ),\n        'batch_write': ('database', 'writes', 'labels', ),\n        'begin_transaction': ('database', 'options', ),\n        'commit': ('database', 'writes', 'transaction', ),\n        'create_document': ('parent', 'collection_id', 'document', 'document_id', 'mask', ),\n        'delete_document': ('name', 'current_document', ),\n        'get_document': ('name', 'mask', 'transaction', 'read_time', ),",
+        "detail": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "partition",
+        "kind": 2,
+        "importPath": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "description": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "peekOfCode": "def partition(\n    predicate: Callable[[Any], bool],\n    iterator: Sequence[Any]\n) -> Tuple[List[Any], List[Any]]:\n    \"\"\"A stable, out-of-place partition.\"\"\"\n    results = ([], [])\n    for i in iterator:\n        results[int(predicate(i))].append(i)\n    # Returns trueList, falseList\n    return results[1], results[0]",
+        "detail": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "fix_files",
+        "kind": 2,
+        "importPath": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "description": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "peekOfCode": "def fix_files(\n    in_dir: pathlib.Path,\n    out_dir: pathlib.Path,\n    *,\n    transformer=firestoreCallTransformer(),\n):\n    \"\"\"Duplicate the input dir to the output dir, fixing file method calls.\n    Preconditions:\n    * in_dir is a real directory\n    * out_dir is a real, empty directory",
+        "detail": "backend.AppEnv.bin.fixup_firestore_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "UserAuthDetails",
+        "kind": 6,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "class UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }\n@router.post(\"/ping\")",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordResetRequest",
+        "kind": 6,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "class PasswordResetRequest(BaseModel):\n    email: str\n# Endpoint for password reset request\n@router.post(\"/reset_password\")\nasync def reset_password(request: PasswordResetRequest):\n    email = request.email\n    if email is None:\n        return HTTPException(\n            detail={\"message\": \"Error! Missing Email\"},\n            status_code=400",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "router = APIRouter(\n    prefix=\"/auth\",\n    tags=[\"auth\"],\n)\nfrom utilities.send_email import send_mail\n# Importing Firebase stuff.\nimport firebase_admin\nimport pyrebase\nimport json\nfrom firebase_admin import credentials, auth",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "cred",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "cred = credentials.Certificate(\"there-all-along_service_account_keys.json\")\nfirebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\nclass UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "firebase",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "firebase = firebase_admin.initialize_app(cred)\npb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\nclass UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "pb",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_auth",
+        "description": "backend.routes.firebase_auth",
+        "peekOfCode": "pb = pyrebase.initialize_app(json.load(open(\"firebase_config.json\")))\nclass UserAuthDetails(BaseModel):\n    email: str\n    password: str\n# ping endpoint\n@router.get(\"/hello\")\nasync def root():\n    return {\n        \"message\": \"Hello World, to: there all along react native app, auth section\"\n    }",
+        "detail": "backend.routes.firebase_auth",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_db",
+        "description": "backend.routes.firebase_db",
+        "peekOfCode": "router = APIRouter(\n    prefix=\"/db\",\n    tags=[\"db\"],\n)\nref = db.reference(\"/\")",
+        "detail": "backend.routes.firebase_db",
+        "documentation": {}
+    },
+    {
+        "label": "ref",
+        "kind": 5,
+        "importPath": "backend.routes.firebase_db",
+        "description": "backend.routes.firebase_db",
+        "peekOfCode": "ref = db.reference(\"/\")",
+        "detail": "backend.routes.firebase_db",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "kind": 2,
+        "importPath": "backend.utilities.send_email",
+        "description": "backend.utilities.send_email",
+        "peekOfCode": "def send_mail(To, Subject=\"Reset Password Link\", link = \"\"):\n    \"\"\"\n    :param To: The person's *Gmail* id that you are trying to send to.\n    :param Subject: The subject of your mail\n    :param Content: What it is that you want to send\n    :return: 0 if failed or error encountered, 1 if successfully sent\n    \"\"\"\n    if \"@gmail.com\" not in To or type(Subject) != str or type(link) != str:\n        print(\n            \"Either the email address is not a gmail address, or the content and Subject is not a String\"",
+        "detail": "backend.utilities.send_email",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_ADDRESS",
+        "kind": 5,
+        "importPath": "backend.utilities.send_email",
+        "description": "backend.utilities.send_email",
+        "peekOfCode": "EMAIL_ADDRESS = \"puzzlelists@gmail.com\"\nwith open(\"private/email_pass.txt\", \"r\") as f:\n    EMAIL_PASSWORD = f.read()\ndef send_mail(To, Subject=\"Reset Password Link\", link = \"\"):\n    \"\"\"\n    :param To: The person's *Gmail* id that you are trying to send to.\n    :param Subject: The subject of your mail\n    :param Content: What it is that you want to send\n    :return: 0 if failed or error encountered, 1 if successfully sent\n    \"\"\"",
+        "detail": "backend.utilities.send_email",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.app",
+        "description": "backend.app",
+        "peekOfCode": "app = FastAPI()\nallow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_auth.router)",
+        "detail": "backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "allow_all",
+        "kind": 5,
+        "importPath": "backend.app",
+        "description": "backend.app",
+        "peekOfCode": "allow_all = ['*']\napp.add_middleware(\n   CORSMiddleware,\n   allow_origins=allow_all,\n   allow_credentials=True,\n   allow_methods=allow_all,\n   allow_headers=allow_all\n)\napp.include_router(firebase_auth.router)\n# basic routes. ",
+        "detail": "backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "TestClass",
+        "kind": 6,
+        "importPath": "backend.test_class",
+        "description": "backend.test_class",
+        "peekOfCode": "class TestClass:\n    def test_one(self):\n        x = \"this\"\n        assert \"h\" in x",
+        "detail": "backend.test_class",
+        "documentation": {}
+    }
+]
