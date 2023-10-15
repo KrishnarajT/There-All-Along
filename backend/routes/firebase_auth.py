@@ -10,8 +10,7 @@ router = APIRouter(
 from utilities.send_email import send_reset_mail, send_verification_mail
 
 # Importing Firebase stuff.
-from firebase_admin import credentials, auth, db
-from fastapi import FastAPI, Request
+from firebase_admin import auth, db
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 import pyrebase

@@ -18,8 +18,8 @@ const Settings = () => {
 			</Text>
 			<Switch
 				className=""
-				trackColor={{ false: "#374151", true: "#374151" }}
-				thumbColor={isEnabled ? "#374151" : "#374151"}
+				trackColor={{ false: "#b3c3ae", true: "#123306" }}
+				thumbColor={isEnabled ? "#638cd0" : "#1461e4"}
 				ios_backgroundColor="#374151"
 				onValueChange={toggleSwitch}
 				value={isEnabled}
