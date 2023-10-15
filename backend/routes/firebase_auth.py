@@ -1,10 +1,12 @@
 from fastapi import APIRouter
+from firebase_admin.auth import UserNotFoundError
+
 
 router = APIRouter(
-    prefix="/auth",
-    tags=["auth"],
+        prefix = "/auth",
+        tags = [ "auth" ],
 )
-from utilities.send_email import send_mail
+from utilities.send_email import send_reset_mail, send_verification_mail
 
 # Importing Firebase stuff.
 
@@ -19,97 +21,146 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 
-# Initializing firebase creds.
-cred = credentials.Certificate("there-all-along_service_account_keys.json")
-firebase = firebase_admin.initialize_app(cred)
-pb = pyrebase.initialize_app(json.load(open("firebase_config.json")))
 
-class UserAuthDetails(BaseModel):
+# Initializing firebase creds.
+cred = credentials.Certificate( "private/there-all-along_service_account_keys.json" )
+firebase = firebase_admin.initialize_app( cred )
+pb = pyrebase.initialize_app( json.load( open( "private/firebase_config.json" ) ) )
+
+class UserAuthDetails( BaseModel ) :
     email: str
     password: str
 
-
 # ping endpoint
-@router.get("/hello")
-async def root():
+@router.get( "/hello" )
+async def root() :
     return {
-        "message": "Hello World, to: there all along react native app, auth section"
+        "message" : "Hello World, to: there all along react native app, auth section"
     }
 
-@router.post("/ping")
-async def validate(request: Request):
+@router.post( "/ping" )
+async def validate( request: Request ) :
     headers = request.headers
-    jwt = headers.get("Authorization")
-    print(f"jwt:{jwt}")
-    user = auth.verify_id_token(jwt)
-    return user["uid"]
+    jwt = headers.get( "Authorization" )
+    print( f"jwt:{jwt}" )
+    user = auth.verify_id_token( jwt )
+    return user[ "uid" ]
 
-
-class PasswordResetRequest(BaseModel):
+class PasswordResetRequest( BaseModel ) :
     email: str
 
 # Endpoint for password reset request
-@router.post("/reset_password")
-async def reset_password(request: PasswordResetRequest):
+@router.post( "/reset_password" )
+async def reset_password( request: PasswordResetRequest ) :
     email = request.email
-
-    if email is None:
+    
+    if email is None :
         return HTTPException(
-            detail={"message": "Error! Missing Email"},
-            status_code=400
+                detail = { "message" : "Error! Missing Email" },
+                status_code = 400
+        )
+    
+    try :
+        # Send password reset email
+        link = auth.generate_password_reset_link( email )
+        await send_reset_mail( email, link = link )
+        
+        return { "message" : f"Password reset link sent to {email}" }
+    except Exception as e :
+        print( e )
+        return HTTPException(
+                detail = { "message" : f"Error sending password reset link: {e}" },
+                status_code = 400
         )
 
-    try:
-        # Send password reset email
-        link = auth.generate_password_reset_link(email)
-        send_mail(email, link=link)
-        return {"message": f"Password reset link sent to {email}"}
+# signup endpoint
+@router.post( "/signup" )
+async def signup( userAuthDetails: UserAuthDetails ) :
+    print( "hello signup" )
+    print( userAuthDetails )
+    email = userAuthDetails.email
+    password = userAuthDetails.password
+    
+    if email is None or password is None :
+        return HTTPException(
+                detail = { "message" : "Error! Missing Email or Password" }, status_code = 400
+        )
+    try :
+        user = auth.create_user( email = email, password = password )
+        print( user )
+        
+        # Send email verification
+        link = auth.generate_email_verification_link( user.email )
+        send_verification_mail( user.email, link = link )
+        return { "message" : f"User {user.uid} created. Verification email sent to {user.email}" }
+    except :
+        return HTTPException( detail = { "message" : "Error Creating User" }, status_code = 400 )
+
+# login endpoint
+@router.post( "/login" )
+async def login( userAuthDetails: UserAuthDetails ) :
+    print( "hello login" )
+    print( userAuthDetails )
+    email = userAuthDetails.email
+    password = userAuthDetails.password
+    
+    try :
+        # Sign in with email and password
+        user = auth.get_user_by_email( email )
+        # Check if the email is verified
+        if not user.email_verified :
+            return HTTPException(
+                    detail = { "message" : "Email not verified. Please check your email for verification." },
+                    status_code = 401
+            )
+        
+        user = pb.auth().sign_in_with_email_and_password( email, password )
+        
+        return { "message" : "Login successful", "user_id" : user[ 'localId' ], "Token" : user[ 'idToken' ] }
+    except UserNotFoundError as e :
+        return HTTPException(
+                detail = { "message" : "User not found" }, status_code = 400
+        )
+    except Exception as e :
+        return HTTPException(
+                detail = { "message" : "There was an error logging in" }, status_code = 400
+        )
+
+# logout endpoint
+@router.post( "/logout" )
+async def logout( request: Request ) :
+    headers = request.headers
+    jwt = headers.get( "Authorization" )
+    print( f"jwt:{jwt}" )
+    user = auth.verify_id_token( jwt )
+    print( f"user:{user}" )
+    try :
+        # Sign out the user
+        auth.revoke_refresh_tokens( user[ 'uid' ] )
+        return { "message" : "Logout successful" }
+    except UserNotFoundError as e :
+        return HTTPException(
+                detail = { "message" : "User not found" }, status_code = 400
+        )
     except Exception as e:
         print(e)
         return HTTPException(
-            detail={"message": f"Error sending password reset link: {e}"},
-            status_code=400
+                detail = { "message" : "There was an error logging out" }, status_code = 400
         )
-        
-# signup endpoint
-@router.post("/signup")
-async def signup(userAuthDetails: UserAuthDetails):
-    print("hello signup")
-    print(userAuthDetails)
-    email = userAuthDetails.email
-    password = userAuthDetails.password
-    
-    if email is None or password is None:
+
+# delete user endpoint
+@router.post( "/delete_user" )
+async def delete_user( request: Request ) :
+    headers = request.headers
+    jwt = headers.get( "Authorization" )
+    print( f"jwt:{jwt}" )
+    user = auth.verify_id_token( jwt )
+    print( f"user:{user}" )
+    try :
+        # Delete the user
+        auth.delete_user( user[ 'uid' ] )
+        return { "message" : "User successfully deleted" }
+    except :
         return HTTPException(
-            detail={"message": "Error! Missing Email or Password"}, status_code=400
+                detail = { "message" : "There was an error deleting the user" }, status_code = 400
         )
-    try:
-        user = auth.create_user(email=email, password=password)
-        print(user)
-        return JSONResponse(
-            content={"message": f"Successfully created user {user.uid}"},
-            status_code=200,
-        )
-    except:
-        return HTTPException(detail={"message": "Error Creating User"}, status_code=400)
-
-
-# login endpoint
-
-
-@router.post("/login")
-async def login(userAuthDetails: UserAuthDetails):
-    print("hello login")
-    print(userAuthDetails)
-    email = userAuthDetails.email
-    password = userAuthDetails.password
-    
-    try:
-        user = pb.auth().sign_in_with_email_and_password(email, password)
-        jwt = user["idToken"]
-        return JSONResponse(content={"token": jwt}, status_code=200)
-    except:
-        return HTTPException(
-            detail={"message": "There was an error logging in"}, status_code=400
-        )
-        
