@@ -1,12 +1,10 @@
 # I can send anyone emails using Python. The following code is enough for sending a mail with a text message and a subject.
 # this will only work on my Laptop, coz the Env variable is only stored here.
 
-import os
 import smtplib
 from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.application import MIMEApplication
 
 # getting the login and password from the environment variables on this pc
 
@@ -87,9 +85,9 @@ def send_csv_file_of_form_data(To, Subject, csv_content):
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = To
     
-    # Add plain text content to the email
-    content = f"Here is the CSV File of the Form Data that you requested. \n\nRegards\nThere All Along\nKrishnaraj"
-    msg.attach(MIMEText(content, 'plain'))
+    # # Add plain text content to the email
+    # content = f"Here is the CSV File of the Form Data that you requested. \n\nRegards\nThere All Along\nKrishnaraj"
+    # msg.attach(MIMEText(content, 'plain'))
     
     # Attach the CSV content as a CSV file
     csv_attachment = MIMEText(csv_content, 'csv')

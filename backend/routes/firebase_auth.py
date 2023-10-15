@@ -57,9 +57,13 @@ async def reset_password( request: PasswordResetRequest ) :
     try :
         # Send password reset email
         link = auth.generate_password_reset_link( email )
-        await send_reset_mail( email, link = link )
-        
-        return { "message" : f"Password reset link sent to {email}" }
+        if send_reset_mail( email, link = link ) :
+            return { "message" : f"Password reset link sent to {email}" }
+        else :
+            return HTTPException(
+                    detail = { "message" : "Error sending password reset link" },
+                    status_code = 400
+            )
     except Exception as e :
         print( e )
         return HTTPException(
@@ -100,8 +104,13 @@ async def signup( userAuthDetails: UserAuthDetails ) :
         
         # Send email verification
         link = auth.generate_email_verification_link( user.email )
-        send_verification_mail( user.email, link = link )
-        return { "message" : f"User {user.uid} created. Verification email sent to {user.email}" }
+        if send_verification_mail( user.email, link = link ):
+            return { "message" : f"User {user.uid} created. Verification email sent to {user.email}" }
+        else :
+            return HTTPException(
+                    detail = { "message" : "Error sending verification email" },
+                    status_code = 400
+            )
     except :
         return HTTPException( detail = { "message" : "Error Creating User" }, status_code = 400 )
 

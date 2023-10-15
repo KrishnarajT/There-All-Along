@@ -459,10 +459,13 @@ async def email_csv_file_form_data( emailCSVFileInfo: EmailCSVFile ) :
         csv_file = convert_form_data_to_csv( form_data_ref )
         
         # Send the csv file to the email
-        send_csv_file_of_form_data( email, "Your Requested Form Data", csv_file )
-        
-        return { "message" : "CSV file sent to the email" }
-    
+        if send_csv_file_of_form_data( email, "Your Requested Form Data", csv_file ):
+            return { "message" : "CSV file sent to the email" }
+        else:
+            raise HTTPException(
+                    detail = { "message" : "Error in sending csv file." },
+                    status_code = 500
+            )
     except UserNotFoundError as e :
         print( e )
         return HTTPException(
