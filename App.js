@@ -30,19 +30,19 @@ SplashScreen.preventAutoHideAsync();
 export const AuthContext = React.createContext();
 
 export default function App() {
-    const [appIsReady, setappIsReady] = useState(false);
+    const [appIsReady, setAppIsReady] = useState(false);
     const [user, setUser] = React.useState(null);
     const [userAuthenticated, setUserAuthenticated] = React.useState(false);
 
     useEffect(() => {
         async function prepare() {
             try {
-                // do long running splash screen stuff here
-                console.log("doing some long runnning task here. ");
+                // do long-running splash screen stuff here
+                console.log("doing some long running task here. ");
             } catch (e) {
                 console.warn(e);
             } finally {
-                setappIsReady(true);
+                setAppIsReady(true);
                 await SplashScreen.hideAsync();
             }
         }
@@ -54,17 +54,18 @@ export default function App() {
     }
     // Hide splash screen
     SplashScreen.hideAsync();
+
+    // general purpose stack navigator
     const Stack = createStackNavigator();
 
-    // begin code from here.
+    // -- begin code from here. --
+
+    // if the user is authenticated
     if (userAuthenticated) {
         return (<ServerurlProvider>
             <ThemeContextProvider>
                 <AuthContext.Provider value={{
-                    user,
-                    setUser,
-                    userAuthenticated,
-                    setUserAuthenticated,
+                    user, setUser, userAuthenticated, setUserAuthenticated,
                 }}>
                     <NavigationContainer
                     >
@@ -87,13 +88,12 @@ export default function App() {
             </ThemeContextProvider>
         </ServerurlProvider>)
     }
+
+    // if the user is not authenticated
     return <ServerurlProvider>
         <ThemeContextProvider>
             <AuthContext.Provider value={{
-                user,
-                setUser,
-                userAuthenticated,
-                setUserAuthenticated,
+                user, setUser, userAuthenticated, setUserAuthenticated,
             }}>
                 <NavigationContainer>
                     <StatusBar/>
