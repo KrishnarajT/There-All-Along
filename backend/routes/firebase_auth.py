@@ -6,30 +6,29 @@ router = APIRouter(
         prefix = "/auth",
         tags = [ "auth" ],
 )
+
 from utilities.send_email import send_reset_mail, send_verification_mail
 
 # Importing Firebase stuff.
-
-import firebase_admin
+from firebase_admin import credentials, auth, db
+from fastapi import FastAPI, Request
+from fastapi.exceptions import HTTPException
+from pydantic import BaseModel
 import pyrebase
 import json
 
-from firebase_admin import credentials, auth
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-from fastapi.exceptions import HTTPException
-from pydantic import BaseModel
 
-
-# Initializing firebase creds.
-cred = credentials.Certificate( "private/there-all-along_service_account_keys.json" )
-firebase = firebase_admin.initialize_app( cred )
 pb = pyrebase.initialize_app( json.load( open( "private/firebase_config.json" ) ) )
 
 class UserAuthDetails( BaseModel ) :
     email: str
     password: str
+
+class PasswordResetRequest( BaseModel ) :
+    email: str
+
+class UserToken( BaseModel ) :
+    token: str
 
 # ping endpoint
 @router.get( "/hello" )
@@ -39,15 +38,10 @@ async def root() :
     }
 
 @router.post( "/ping" )
-async def validate( request: Request ) :
-    headers = request.headers
-    jwt = headers.get( "Authorization" )
-    print( f"jwt:{jwt}" )
-    user = auth.verify_id_token( jwt )
+async def validate( UserToken: UserToken ) :
+    token = UserToken.token
+    user = auth.verify_id_token( token )
     return user[ "uid" ]
-
-class PasswordResetRequest( BaseModel ) :
-    email: str
 
 # Endpoint for password reset request
 @router.post( "/reset_password" )
@@ -71,6 +65,21 @@ async def reset_password( request: PasswordResetRequest ) :
         return HTTPException(
                 detail = { "message" : f"Error sending password reset link: {e}" },
                 status_code = 400
+        )
+
+async def create_user_object( uid: str ) :
+    try :
+        print( f"Creating user object for {uid}" )
+        # Create a user object with an empty forms object
+        user_data = { "forms" : { } }
+        # Get a reference to the Realtime Database
+        database_ref = db.reference()
+        # Set the user object in the database
+        await database_ref.child( "users" ).child( uid ).set( user_data )
+    except Exception as e :
+        raise HTTPException(
+                detail = { "message" : f"Error creating user object: {str( e )}" },
+                status_code = 500
         )
 
 # signup endpoint
@@ -115,24 +124,23 @@ async def login( userAuthDetails: UserAuthDetails ) :
             )
         
         user = pb.auth().sign_in_with_email_and_password( email, password )
-        
+        create_user_object( user[ 'localId' ] )
         return { "message" : "Login successful", "user_id" : user[ 'localId' ], "Token" : user[ 'idToken' ] }
     except UserNotFoundError as e :
         return HTTPException(
                 detail = { "message" : "User not found" }, status_code = 400
         )
     except Exception as e :
+        print( e )
         return HTTPException(
                 detail = { "message" : "There was an error logging in" }, status_code = 400
         )
 
 # logout endpoint
 @router.post( "/logout" )
-async def logout( request: Request ) :
-    headers = request.headers
-    jwt = headers.get( "Authorization" )
-    print( f"jwt:{jwt}" )
-    user = auth.verify_id_token( jwt )
+async def logout( UserToken: UserToken ) :
+    token = UserToken.token
+    user = auth.verify_id_token( token )
     print( f"user:{user}" )
     try :
         # Sign out the user
@@ -142,19 +150,17 @@ async def logout( request: Request ) :
         return HTTPException(
                 detail = { "message" : "User not found" }, status_code = 400
         )
-    except Exception as e:
-        print(e)
+    except Exception as e :
+        print( e )
         return HTTPException(
                 detail = { "message" : "There was an error logging out" }, status_code = 400
         )
 
 # delete user endpoint
 @router.post( "/delete_user" )
-async def delete_user( request: Request ) :
-    headers = request.headers
-    jwt = headers.get( "Authorization" )
-    print( f"jwt:{jwt}" )
-    user = auth.verify_id_token( jwt )
+async def delete_user( UserToken: UserToken ) :
+    token = UserToken.token
+    user = auth.verify_id_token( token )
     print( f"user:{user}" )
     try :
         # Delete the user
