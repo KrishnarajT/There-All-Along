@@ -96,7 +96,7 @@ export default function App() {
                 user, setUser, userAuthenticated, setUserAuthenticated,
             }}>
                 <NavigationContainer>
-                    <StatusBar/>
+
                     <Stack.Navigator initialRouteName="Login"
                                      screenOptions={{
                                          headerShown: false,
