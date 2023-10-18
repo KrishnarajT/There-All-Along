@@ -70,7 +70,7 @@ typing_extensions==4.8.0
 tzdata==2023.3
 ujson==5.7.0
 uritemplate==4.1.1
-urllib3==1.26.17
+urllib3==1.26.18
 uvicorn==0.22.0
 uvloop==0.17.0
 watchfiles==0.19.0
