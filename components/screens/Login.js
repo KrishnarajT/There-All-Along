@@ -8,11 +8,15 @@ import {StatusBar} from "expo-status-bar";
 import {Button} from "react-native-ui-lib";
 import Label from "react-native-ui-lib/src/incubator/TextField/Label";
 import {SvgXml} from "react-native-svg";
+import {AuthContext} from "../../App";
 
-const Login = () => {
+const Login = (props) => {
     // contexts
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
     const serverUrl = React.useContext(ServerurlContext).serverurl;
+    const {
+        user, setUser, userAuthenticated, handleUserAuthenticated, userToken, setUserToken,
+    } = React.useContext(AuthContext);
     const navigation = useNavigation();
     const route = useRoute();
     const [wannaRetry, setWannaRetry] = useState(false);
@@ -76,7 +80,7 @@ const Login = () => {
             })
             .then((response) => {
                 console.log("response.data: ", response.data);
-                if (response.data['status_code'] === 400) {
+                if (response['status'] === 400) {
                     Alert.alert("Are you Sure?", "Email or Password doesnt seem to be valid. ", [{
                         text: "Retry", onPress: () => {
                             console.log("Retry Pressed")
@@ -85,6 +89,17 @@ const Login = () => {
                             });
                         },
                     }]);
+                }
+                if (response['status'] === 200) {
+                    // login successful
+                    console.log("Login Successful");
+                    // setUserToken(response.data['Token']);
+                    // setUserAuthenticated(true);
+                    // console.log("userauthenticated: ", userAuthenticated);
+                    // props.handleUserAuthenticated(true);
+                    console.log(route.params)
+                    route.params.handleUserAuthenticated(true);
+
                 }
             })
             .catch((error) => {
@@ -153,7 +168,7 @@ const Login = () => {
 
     React.useEffect(() => {
         console.log("Welcome to Logging in. ")
-
+        console.log(route.params)
         // get data from server using axios get request
         axios
             .get(serverUrl + "")

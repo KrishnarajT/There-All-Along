@@ -33,7 +33,13 @@ export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
     const [user, setUser] = React.useState(null);
     const [userAuthenticated, setUserAuthenticated] = React.useState(false);
+    const [userToken, setUserToken] = React.useState(null);
 
+    const handleUserAuthenticated = (userAuthenticated) => {
+        console.log("handleUserAuthenticated: " + userAuthenticated)
+        console.log("triggered in main by something else. ")
+        setUserAuthenticated(userAuthenticated);
+    }
     useEffect(() => {
         async function prepare() {
             try {
@@ -48,7 +54,7 @@ export default function App() {
         }
 
         prepare().then(r => console.log("prepare() done"));
-    }, []);
+    }, [userAuthenticated]);
     if (!appIsReady) {
         return null;
     }
@@ -65,7 +71,7 @@ export default function App() {
         return (<ServerurlProvider>
             <ThemeContextProvider>
                 <AuthContext.Provider value={{
-                    user, setUser, userAuthenticated, setUserAuthenticated,
+                    user, setUser, userAuthenticated, handleUserAuthenticated, userToken, setUserToken,
                 }}>
                     <NavigationContainer
                     >
@@ -76,7 +82,7 @@ export default function App() {
                                          }}
                         >
                             <Stack.Screen
-                                name="Login"
+                                name="AuthScreens"
                                 component={AuthenticatedScreens}
                                 options={{
                                     headerShown: false,
@@ -100,6 +106,7 @@ export default function App() {
                     <Stack.Navigator initialRouteName="Login"
                                      screenOptions={{
                                          headerShown: false,
+                                         handleUserAuthenticated: handleUserAuthenticated,
                                      }}
                     >
                         <Stack.Screen
@@ -108,7 +115,9 @@ export default function App() {
                             options={{
                                 headerShown: false,
                             }}
-                            initialParams={{data: "hi"}}
+                            initialParams={{
+                                data: "hi", handleUserAuthenticated: handleUserAuthenticated,
+                            }}
                         />
                         <Stack.Screen
                             name="Signup"
