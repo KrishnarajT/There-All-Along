@@ -1,6 +1,5 @@
 from typing import List
 
-import firebase_admin
 from fastapi import APIRouter
 from firebase_admin.auth import UserNotFoundError
 from pydantic import BaseModel

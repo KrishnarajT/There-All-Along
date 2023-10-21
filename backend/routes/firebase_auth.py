@@ -132,7 +132,7 @@ async def login( userAuthDetails: UserAuthDetails ) :
             )
         
         user = pb.auth().sign_in_with_email_and_password( email, password )
-        create_user_object( user[ 'localId' ] )
+        await create_user_object( user[ 'localId' ] )
         return { "message" : "Login successful", "user_id" : user[ 'localId' ], "Token" : user[ 'idToken' ] }
     except UserNotFoundError as e :
         return HTTPException(
