@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text, Button} from "react-native";
+import {View, Text, Button, Alert} from "react-native";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {ServerurlContext} from "../../context/ServerurlContext";
 import {ThemeContext} from "../../context/ThemeContext";
@@ -13,6 +13,7 @@ const Home = (props) => {
     const navigation = useNavigation();
     const serverurl = React.useContext(ServerurlContext).serverurl;
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
+
 
     React.useEffect(() => {
         console.log("serverurl: ", serverurl);

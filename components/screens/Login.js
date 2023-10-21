@@ -7,6 +7,7 @@ import {ThemeContext} from "../../context/ThemeContext";
 import {StatusBar} from "expo-status-bar";
 import {Button} from "react-native-ui-lib";
 import {AuthContext} from "../../context/AuthContext";
+import DialogDisplay from "../ui/Dialog";
 
 const Login = (props) => {
     // contexts
@@ -282,7 +283,11 @@ const Login = (props) => {
                     <Text
                         className={`text-sm text-center my-0 ${isDark ? `text-text_dark_color-300` : `text-text_color-300`}`}
                         onPress={() => {
+
                             console.log("Forgot Password Pressed");
+                            // {
+                            //     <DialogDisplay/>
+                            // }
                             Alert.alert("Reset Password", "We get it. Stuff Happens. We can send you an email on your registered Email with a link to reset your password. ", [{
                                 text: "Send Mail", onPress: () => {
                                     console.log("Calling to send reset mail")
@@ -292,7 +297,8 @@ const Login = (props) => {
                                 text: "Retry", onPress: () => {
                                     console.log("trying pass again")
                                 }, style: "cancel",
-                            },])
+                            },]
+                            )
                         }}
                     >
                         Forgot Password?
