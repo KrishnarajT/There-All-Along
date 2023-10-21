@@ -3,16 +3,23 @@ import React from "react";
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-	const [user, setUser] = React.useState(null);
+	const [userId, setUserId] = React.useState(null);
+	const [userEmail, setUserEmail] = React.useState(null);
 	const [userAuthenticated, setUserAuthenticated] = React.useState(false);
+	const [userToken, setUserToken] = React.useState(null);
+
 
 	return (
 		<AuthContext.Provider
 			value={{
-				user,
-				setUser,
+				userId,
+				setUserId,
+				userEmail,
+				setUserEmail,
 				userAuthenticated,
 				setUserAuthenticated,
+				userToken,
+				setUserToken,
 			}}
 		>
 			{children}

@@ -6,16 +6,14 @@ import axios from "axios";
 import {ThemeContext} from "../../context/ThemeContext";
 import {StatusBar} from "expo-status-bar";
 import {Button} from "react-native-ui-lib";
-import Label from "react-native-ui-lib/src/incubator/TextField/Label";
-import {SvgXml} from "react-native-svg";
-import {AuthContext} from "../../App";
+import {AuthContext} from "../../context/AuthContext";
 
 const Login = (props) => {
     // contexts
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
     const serverUrl = React.useContext(ServerurlContext).serverurl;
     const {
-        user, setUser, userAuthenticated, handleUserAuthenticated, userToken, setUserToken,
+        setUserAuthenticated, handleUserAuthenticated, userToken, setUserToken, userEmail, setUserEmail, userId, setUserId,
     } = React.useContext(AuthContext);
     const navigation = useNavigation();
     const route = useRoute();
@@ -93,13 +91,13 @@ const Login = (props) => {
                 if (response['status'] === 200) {
                     // login successful
                     console.log("Login Successful");
-                    // setUserToken(response.data['Token']);
-                    // setUserAuthenticated(true);
-                    // console.log("userauthenticated: ", userAuthenticated);
-                    // props.handleUserAuthenticated(true);
+                    // set the user and userToken in the context
+                    setUserId(response.data['Id']);
+                    setUserEmail(email);
+                    setUserToken(response.data['token']);
+                    setUserAuthenticated(true);
                     console.log(route.params)
                     route.params.handleUserAuthenticated(true);
-
                 }
             })
             .catch((error) => {
@@ -227,7 +225,7 @@ const Login = (props) => {
                     className={`flex justify-center items-center w-screen p-4 pt-10 m-2 rounded-2xl w-4/5 border border-1 ${isDark ? `bg-background_dark_color-500` : `bg-primary_color-100`}`}
                 >
                     <TextInput
-                        className={`text-lg outline text-center m-4 p-2 mb-1 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
+                        className={`text-lg outline text-center m-2 p-2 mb-1 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
 
                         onChangeText={(text) => {
                             setEmail(text);
@@ -246,7 +244,7 @@ const Login = (props) => {
                     </Text>
 
                     <TextInput
-                        className={`text-lg outline text-center m-4 p-2 mb-0 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
+                        className={`text-lg outline text-center m-2 p-2 mb-0 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
                         onChangeText={(text) => {
                             setPassword(text);
                         }}

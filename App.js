@@ -23,17 +23,14 @@ import ThemeContextProvider from "./context/ThemeContext";
 import Login from "./components/screens/Login";
 import Signup from "./components/screens/Signup";
 import AuthenticatedScreens from "./AuthenticatedScreens";
+import {AuthProvider} from "./context/AuthContext";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
-export const AuthContext = React.createContext();
-
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
-    const [user, setUser] = React.useState(null);
     const [userAuthenticated, setUserAuthenticated] = React.useState(false);
-    const [userToken, setUserToken] = React.useState(null);
 
     const handleUserAuthenticated = (userAuthenticated) => {
         console.log("handleUserAuthenticated: " + userAuthenticated)
@@ -70,9 +67,7 @@ export default function App() {
     if (userAuthenticated) {
         return (<ServerurlProvider>
             <ThemeContextProvider>
-                <AuthContext.Provider value={{
-                    user, setUser, userAuthenticated, handleUserAuthenticated, userToken, setUserToken,
-                }}>
+                <AuthProvider>
                     <NavigationContainer
                     >
                         <StatusBar/>
@@ -90,7 +85,7 @@ export default function App() {
                             />
                         </Stack.Navigator>
                     </NavigationContainer>
-                </AuthContext.Provider>
+                </AuthProvider>
             </ThemeContextProvider>
         </ServerurlProvider>)
     }
@@ -98,9 +93,7 @@ export default function App() {
     // if the user is not authenticated
     return <ServerurlProvider>
         <ThemeContextProvider>
-            <AuthContext.Provider value={{
-                user, setUser, userAuthenticated, setUserAuthenticated,
-            }}>
+            <AuthProvider>
                 <NavigationContainer>
 
                     <Stack.Navigator initialRouteName="Login"
@@ -128,7 +121,7 @@ export default function App() {
                         />
                     </Stack.Navigator>
                 </NavigationContainer>
-            </AuthContext.Provider>
+            </AuthProvider>
         </ThemeContextProvider>
     </ServerurlProvider>
 }
