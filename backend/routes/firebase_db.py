@@ -16,9 +16,6 @@ from fastapi.exceptions import HTTPException
 # Importing Firebase stuff.
 from firebase_admin import auth, db
 
-# importing pandas
-import pandas as pd
-
 # Importing email functionality
 from utilities.send_email import send_csv_file_of_form_data
 
