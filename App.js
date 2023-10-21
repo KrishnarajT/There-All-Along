@@ -30,7 +30,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
-    const [userAuthenticated, setUserAuthenticated] = React.useState(false);
+    const [userAuthenticated, setUserAuthenticated] = React.useState(true);
 
     const handleUserAuthenticated = (userAuthenticated) => {
         console.log("handleUserAuthenticated: " + userAuthenticated)
@@ -70,7 +70,6 @@ export default function App() {
                 <AuthProvider>
                     <NavigationContainer
                     >
-                        <StatusBar/>
                         <Stack.Navigator initialRouteName="App"
                                          screenOptions={{
                                              headerShown: false,

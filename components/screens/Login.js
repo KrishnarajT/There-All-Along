@@ -13,7 +13,7 @@ const Login = (props) => {
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
     const serverUrl = React.useContext(ServerurlContext).serverurl;
     const {
-        setUserAuthenticated, handleUserAuthenticated, userToken, setUserToken, userEmail, setUserEmail, userId, setUserId,
+        setUserAuthenticated, userToken, setUserToken, userEmail, setUserEmail, userId, setUserId,
     } = React.useContext(AuthContext);
     const navigation = useNavigation();
     const route = useRoute();
@@ -22,6 +22,7 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [emailComment, setEmailComment] = useState("");
     const [passwordComment, setPasswordComment] = useState("");
+    const handleUserAuthenticated = route.params.handleUserAuthenticated;
 
     const handleLogin = () => {
         console.log("Login Pressed");
@@ -97,7 +98,7 @@ const Login = (props) => {
                     setUserToken(response.data['token']);
                     setUserAuthenticated(true);
                     console.log(route.params)
-                    route.params.handleUserAuthenticated(true);
+                    handleUserAuthenticated(true);
                 }
             })
             .catch((error) => {
@@ -167,6 +168,8 @@ const Login = (props) => {
     React.useEffect(() => {
         console.log("Welcome to Logging in. ")
         console.log(route.params)
+        console.log("serverurl: ", serverUrl);
+        console.log("user token", userToken);
         // get data from server using axios get request
         axios
             .get(serverUrl + "")
@@ -176,6 +179,7 @@ const Login = (props) => {
             })
             .catch((error) => {
                 console.log("error: ", error);
+
 
                 // Show an alert that there is error connecting to the server.
                 Alert.alert("Server Error!", "Sorry! Error Connecting to the Server, Please Try again later.", [{
@@ -249,7 +253,6 @@ const Login = (props) => {
                             setPassword(text);
                         }}
                         value={password}
-                        autoFocus={true}
                         secureTextEntry={true}
                         keyboardAppearance={isDark ? `dark` : `light`}
                         placeholder="Enter your Password"
