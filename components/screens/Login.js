@@ -7,6 +7,7 @@ import {ThemeContext} from "../../context/ThemeContext";
 import {StatusBar} from "expo-status-bar";
 import {Button} from "react-native-ui-lib";
 import Label from "react-native-ui-lib/src/incubator/TextField/Label";
+import {SvgXml} from "react-native-svg";
 
 const Login = () => {
     // contexts
@@ -15,6 +16,140 @@ const Login = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const [wannaRetry, setWannaRetry] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailComment, setEmailComment] = useState("");
+    const [passwordComment, setPasswordComment] = useState("");
+
+    const handleLogin = () => {
+        console.log("Login Pressed");
+        console.log("email: ", email);
+        console.log("password: ", password);
+
+        // if email is not valid, update comment
+        if (email.length === 0) {
+            setEmailComment("Email is Required");
+            return;
+        }
+        if (email.length < 6) {
+            setEmailComment("Email is too short");
+            return;
+        }
+        if (email.length > 254) {
+            setEmailComment("Email is too long");
+            return;
+        }
+        if (!email.includes("@")) {
+            setEmailComment("Email is invalid");
+            return;
+        }
+        if (!email.includes(".")) {
+            setEmailComment("Email is invalid");
+            return;
+        }
+        if (email.includes(" ")) {
+            setEmailComment("Email is invalid");
+            return;
+        }
+        setEmailComment("");
+
+        // now do the same with password
+        if (password.length === 0) {
+            setPasswordComment("Password is Required");
+            return;
+        }
+        if (password.length < 8) {
+            setPasswordComment("Password is too short (min 8)");
+            return;
+        }
+        if (password.length > 16) {
+            setPasswordComment("Password length is more than 16");
+            return;
+        }
+        setPasswordComment("");
+
+        console.log("email and password are valid. ")
+        // send to server using axios post request
+        axios
+            .post(serverUrl + "auth/login", {
+                email: email, password: password,
+            })
+            .then((response) => {
+                console.log("response.data: ", response.data);
+                if (response.data['status_code'] === 400) {
+                    Alert.alert("Are you Sure?", "Email or Password doesnt seem to be valid. ", [{
+                        text: "Retry", onPress: () => {
+                            console.log("Retry Pressed")
+                            setWannaRetry((wannaRetry) => {
+                                return !wannaRetry;
+                            });
+                        },
+                    }]);
+                }
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+                // Show an alert that there is error connecting to the server.
+                Alert.alert("Server Error!", "Sorry! Error Connecting to the Server, Please Try again later.", [{
+                    text: "Retry", onPress: () => {
+                        console.log("Retry Pressed")
+                        setWannaRetry((wannaRetry) => {
+                            return !wannaRetry;
+                        });
+                    },
+                }, {
+                    text: "Exit", onPress: () => {
+                        console.log("Exit Pressed")
+                        // exit the app completely
+                        BackHandler.exitApp();
+                    }, style: "cancel",
+                },]);
+            });
+    }
+
+    const handleForgotPassword = () => {
+        console.log("Forgot Password Pressed");
+        if (email.length === 0) {
+            setEmailComment("Email is Required");
+            return;
+        }
+        axios
+            .post(serverUrl + "auth/reset_password", {
+                email: email,
+            })
+            .then((response) => {
+                console.log("response.data: ", response.data);
+                if (response.data['status_code'] === 400) {
+                    Alert.alert("Are you Sure?", "Email or Password doesnt seem to be valid. ", [{
+                        text: "Retry", onPress: () => {
+                            console.log("Retry Pressed")
+                            setWannaRetry((wannaRetry) => {
+                                return !wannaRetry;
+                            });
+                        },
+                    }]);
+                }
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+                // Show an alert that there is error connecting to the server.
+                Alert.alert("Server Error!", "Sorry! Error Connecting to the Server, Please Try again later.", [{
+                    text: "Retry", onPress: () => {
+                        console.log("Retry Pressed")
+                        setWannaRetry((wannaRetry) => {
+                            return !wannaRetry;
+                        });
+                    },
+                }, {
+                    text: "Exit", onPress: () => {
+                        console.log("Exit Pressed")
+                        // exit the app completely
+                        BackHandler.exitApp();
+                    }, style: "cancel",
+                },]);
+            });
+    }
+
 
     React.useEffect(() => {
         console.log("Welcome to Logging in. ")
@@ -48,12 +183,18 @@ const Login = () => {
     }, [serverUrl, wannaRetry]);
 
 
-    return (
-        <View className={`flex-1 ${isDark ? `bg-background_dark_color-500` : `bg-background_color-400`}`}
+    return (<View className={`flex-1 ${isDark ? `bg-background_dark_color-500` : `bg-background_color-400`}`}
+    >
+        <ImageBackground
+            source={require("../../assets/beams.fc7585c96ed1be49b576.jpg")}
+            style={{
+                flex: 1, resizeMode: "cover", overflow: "hidden", justifyContent: "flex-start",
+            }}
+            imageStyle={{
+                opacity: 1,
+            }}
         >
-            <StatusBar style={
-                isDark ? `light` : `dark`
-            }/>
+            <StatusBar style={isDark ? `light` : `dark`}/>
             <View className="h-1/4 flex justify-end items-center">
                 <ImageBackground
                     source={require("../../assets/ic_launcher.png")}
@@ -68,69 +209,75 @@ const Login = () => {
             <KeyboardAvoidingView className="flex justify-center items-center">
 
                 <KeyboardAvoidingView
-                    className={`flex justify-center items-center w-screen p-4 m-2 rounded-2xl w-4/5 border border-2 ${isDark ? `bg-background_dark_color-500` : `bg-primary_color-100`}`}
+                    className={`flex justify-center items-center w-screen p-4 pt-10 m-2 rounded-2xl w-4/5 border border-1 ${isDark ? `bg-background_dark_color-500` : `bg-primary_color-100`}`}
                 >
                     <TextInput
-                        className={`text-xl outline text-center m-4 p-4 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
-                        // onChangeText={onChangeNumber}
-                        // value={number}
+                        className={`text-lg outline text-center m-4 p-2 mb-1 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
+
+                        onChangeText={(text) => {
+                            setEmail(text);
+                        }}
+                        value={email}
                         autoFocus={true}
                         keyboardAppearance={isDark ? `dark` : `light`}
                         placeholder="Enter your email"
                         keyboardType="email-address"
                     />
+
+                    <Text
+                        className={`text-sm text-left m-0 p-0 ${isDark ? `text-text_dark_color-500` : `text-red-800`}`}
+                    >
+                        {emailComment}
+                    </Text>
+
                     <TextInput
-                        className={`text-xl outline text-center m-4 p-4 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
-                        // onChangeText={onChangeNumber}
-                        // value={number}
+                        className={`text-lg outline text-center m-4 p-2 mb-0 rounded-full w-full border ${isDark ? `text-text_dark_color-500 bg-background_dark_color-500` : `text-black bg-background_color-600`}`}
+                        onChangeText={(text) => {
+                            setPassword(text);
+                        }}
+                        value={password}
                         autoFocus={true}
-                        passwordRules={
-                            {
-                                minLength: 8,
-                                maxLength: 16,
-                                minLowercase: 1,
-                                minUppercase: 1,
-                                minSymbols: 1,
-                                minNumbers: 1,
-                            }
-                        }
+                        secureTextEntry={true}
                         keyboardAppearance={isDark ? `dark` : `light`}
                         placeholder="Enter your Password"
                         keyboardType="default"
                     />
-
-                    <Button label={'Login'} className="p-4 m-1 w-2/5 mb-4" onPress={
-                        () => {
-                            console.log("Login Pressed");
-                        }
-                    } />
                     <Text
-                        className={`text-lg text-center p-1 hover:underline ${isDark ? `text-text_dark_color-500` : `text-text_color-500`}`}
-                        onPress={
-                            () => {
-                                console.log("Sign Up Pressed");
-                                navigation.navigate("Signup");
-                            }
-                        }
+                        className={`text-sm text-left m-0 p-0 mt-1 ${isDark ? `text-text_dark_color-500` : `text-red-800`}`}
+                    >
+                        {passwordComment}
+                    </Text>
+                    <Button label={'Login'} className="p-3 m-1 w-3/5 mb-4 mt-10 bg-primary_color-500" onPress={() => {
+                        console.log("Login Pressed");
+                        handleLogin();
+                    }}
+                        // disabled={email.length === 0 || password.length === 0}
+                    />
+
+                    <Text
+                        className={`text-sm text-center my-0 hover:underline ${isDark ? `text-text_dark_color-300` : `text-text_color-300`}`}
+                        onPress={() => {
+                            console.log("Sign Up Pressed");
+                            navigation.navigate("Signup");
+                        }}
                     >
                         Dont have an Account? Sign Up!
                     </Text>
                     <Text
-                        className={`text-lg text-center p-1 ${isDark ? `text-text_dark_color-500` : `text-text_color-500`}`}
-                        onPress={
-                            () => {
-                                console.log("Forgot Password Pressed");
-                                Alert.alert("Reset Password", "We get it. Stuff Happens. We can send you an email on your registered Email with a link to reset your password. ", [{
-                                    text: "Send Mail", onPress: () => {
-                                        console.log("Calling to send reset mail")
-                                    },
-                                }, {
-                                    text: "Retry", onPress: () => {
-                                        console.log("trying pass again")
-                                    }, style: "cancel",
-                                },])
-                            }
-                        }
+                        className={`text-sm text-center my-0 ${isDark ? `text-text_dark_color-300` : `text-text_color-300`}`}
+                        onPress={() => {
+                            console.log("Forgot Password Pressed");
+                            Alert.alert("Reset Password", "We get it. Stuff Happens. We can send you an email on your registered Email with a link to reset your password. ", [{
+                                text: "Send Mail", onPress: () => {
+                                    console.log("Calling to send reset mail")
+                                    handleForgotPassword();
+                                },
+                            }, {
+                                text: "Retry", onPress: () => {
+                                    console.log("trying pass again")
+                                }, style: "cancel",
+                            },])
+                        }}
                     >
                         Forgot Password?
                     </Text>
@@ -138,9 +285,8 @@ const Login = () => {
                 </KeyboardAvoidingView>
             </KeyboardAvoidingView>
 
-
-        </View>
-    );
+        </ImageBackground>
+    </View>);
 };
 
 export default Login;
