@@ -96,7 +96,7 @@ const Login = (props) => {
                     // set the user and userToken in the context
                     setUserId(response.data['Id']);
                     setUserEmail(email);
-                    setUserToken(response.data['token']);
+                    setUserToken(response.data['Token']);
                     setUserAuthenticated(true);
                     console.log(route.params)
                     handleUserAuthenticated(true);

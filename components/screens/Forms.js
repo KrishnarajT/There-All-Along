@@ -15,23 +15,23 @@ const Forms = (props) => {
     const serverurl = React.useContext(ServerurlContext).serverurl;
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
     const [searchQuery, setSearchQuery] = React.useState('');
-    const [forms, setForms] = React.useState([]);
+    const [forms, setForms] = React.useState(null);
     const {
         setUserAuthenticated, userToken, setUserToken, userEmail, setUserEmail, userId, setUserId,
     } = React.useContext(AuthContext);
 
     React.useEffect(() => {
-        console.log("serverurl: ", serverurl);
+        console.log("server Url: ", serverurl);
+        console.log("userToken: ", userToken)
+        console.log("Forms are: ", forms)
         // get data from server using axios get request
         axios
-            .get(serverurl + "db/get_forms", {
-                    params: {
-                        token: userToken
-                    },
-                }
-            )
+            .post(serverurl + "db/get_forms", {
+                token: userToken,
+            })
             .then((response) => {
                 console.log("response.data: ", response.data);
+                setForms(response.data);
             })
             .catch((error) => {
                 console.log("error: ", error);
@@ -63,7 +63,41 @@ const Forms = (props) => {
         <ScrollView
             className="flex-1 "
         >
+            {
+                forms ? forms.map((form, index) => {
 
+                        return (
+                            <View
+                                key={index}
+                                className={`m-4 p-4 border rounded-lg ${isDark ? `bg-background_dark_color-500` : `bg-secondary_color-200`}`}
+                            >
+                                <Text
+                                    className={`text-lg font-bold ${isDark ? `text-white` : `text-black`}`}
+                                >
+                                    {form.name}
+                                </Text>
+                                <Text
+                                    className={`text-sm ${isDark ? `text-white` : `text-black`}`}
+                                >
+                                    {form.description}
+                                </Text>
+                                <Button
+                                    mode="contained"
+                                    onPress={() => {
+                                        navigation.navigate("Form", {
+                                            formId: form.id,
+                                        })
+                                    }}
+                                    className={`mt-4 ${isDark ? `bg-primary_color-500` : `bg-primary_color-300`}`}
+                                >
+                                    Open
+                                </Button>
+                            </View>
+                        );
+
+                    }
+                ) : <Text>No Forms Found</Text>
+            }
         </ScrollView>
     </View>);
 };

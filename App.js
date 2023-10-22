@@ -30,7 +30,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
-    const [userAuthenticated, setUserAuthenticated] = React.useState(true);
+    const [userAuthenticated, setUserAuthenticated] = React.useState(false);
 
     const handleUserAuthenticated = (userAuthenticated) => {
         console.log("handleUserAuthenticated: " + userAuthenticated)
