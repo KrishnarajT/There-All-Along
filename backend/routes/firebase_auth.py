@@ -99,6 +99,7 @@ async def signup( userAuthDetails: UserAuthDetails ) :
         )
     try :
         user = auth.create_user( email = email, password = password )
+        create_user_object( user.uid )
         print( user )
         
         # Send email verification
@@ -110,8 +111,9 @@ async def signup( userAuthDetails: UserAuthDetails ) :
                     detail = { "message" : "Error sending verification email" },
                     status_code = 400
             )
-    except :
-        return HTTPException( detail = { "message" : "Error Creating User" }, status_code = 400 )
+    except Exception as e:
+        print( e )
+        return HTTPException( detail = { "message" : str( e ) }, status_code = 400 )
 
 # login endpoint
 @router.post( "/login" )
@@ -132,7 +134,6 @@ async def login( userAuthDetails: UserAuthDetails ) :
             )
         
         user = pb.auth().sign_in_with_email_and_password( email, password )
-        await create_user_object( user[ 'localId' ] )
         return { "message" : "Login successful", "user_id" : user[ 'localId' ], "Token" : user[ 'idToken' ] }
     except UserNotFoundError as e :
         return HTTPException(

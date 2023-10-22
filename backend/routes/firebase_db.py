@@ -40,7 +40,7 @@ class AddFormData( BaseModel ) :
     form_data: dict
 
 # get forms endpoint
-@router.get( "/get_forms" )
+@router.post( "/get_forms" )
 async def get_forms( userToken: UserToken ) :
     token = userToken.token
     try :
@@ -66,7 +66,7 @@ async def get_forms( userToken: UserToken ) :
         )
 
 # get form endpoint
-@router.get( "/get_form" )
+@router.post( "/get_form" )
 async def get_form( userFormInfo: UserFormInfo ) :
     token = userFormInfo.token
     form_id = userFormInfo.form_id
@@ -351,7 +351,7 @@ class GetAllFormData( BaseModel ) :
     token: str
     form_id: str
 
-@router.get( "/get_all_form_data" )
+@router.post( "/get_all_form_data" )
 async def get_all_form_data( getAllFormDataInfo: GetAllFormData ) :
     token = getAllFormDataInfo.token
     form_id = getAllFormDataInfo.form_id
@@ -383,7 +383,7 @@ class GetSingleFormData( BaseModel ) :
     form_id: str
     form_data_id: str
 
-@router.get( "/get_single_form_data" )
+@router.post( "/get_single_form_data" )
 async def get_single_form_data( getSingleFormDataInfo: GetSingleFormData ) :
     token = getSingleFormDataInfo.token
     form_id = getSingleFormDataInfo.form_id
