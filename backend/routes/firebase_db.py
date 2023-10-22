@@ -50,6 +50,8 @@ async def get_forms( userToken: UserToken ) :
         
         # Get the data of all forms using .get()
         forms_data = forms_ref.get()
+        # convert the data to a list
+        forms_data = list( forms_data.values() )
         
         return forms_data
     except UserNotFoundError as e :
