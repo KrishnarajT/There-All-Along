@@ -63,40 +63,38 @@ const Forms = (props) => {
         <ScrollView
             className="flex-1 "
         >
-            {
-                forms ? forms.map((form, index) => {
+            {forms ? forms.filter((form) => {
+                return form.name.toLowerCase().includes(searchQuery.toLowerCase())
+            }).map((form, index) => {
 
-                        return (
-                            <View
-                                key={index}
-                                className={`m-4 p-4 border rounded-lg ${isDark ? `bg-background_dark_color-500` : `bg-secondary_color-200`}`}
-                            >
-                                <Text
-                                    className={`text-lg font-bold ${isDark ? `text-white` : `text-black`}`}
-                                >
-                                    {form.name}
-                                </Text>
-                                <Text
-                                    className={`text-sm ${isDark ? `text-white` : `text-black`}`}
-                                >
-                                    {form.description}
-                                </Text>
-                                <Button
-                                    mode="contained"
-                                    onPress={() => {
-                                        navigation.navigate("Form", {
-                                            formId: form.id,
-                                        })
-                                    }}
-                                    className={`mt-4 ${isDark ? `bg-primary_color-500` : `bg-primary_color-300`}`}
-                                >
-                                    Open
-                                </Button>
-                            </View>
-                        );
+                return (<View
+                        key={index}
+                        className={`m-4 p-4 border rounded-lg ${isDark ? `bg-background_dark_color-500` : `bg-secondary_color-200`}`}
+                    >
+                        <Text
+                            className={`text-lg font-bold ${isDark ? `text-white` : `text-black`}`}
+                        >
+                            {form.name}
+                        </Text>
+                        <Text
+                            className={`text-sm ${isDark ? `text-white` : `text-black`}`}
+                        >
+                            {form.description}
+                        </Text>
+                        <Button
+                            mode="contained"
+                            onPress={() => {
+                                navigation.navigate("Form", {
+                                    formId: form.id,
+                                })
+                            }}
+                            className={`mt-4 ${isDark ? `bg-primary_color-500` : `bg-primary_color-300`}`}
+                        >
+                            Open
+                        </Button>
+                    </View>)
+            }) : <Text>No Forms Found</Text>
 
-                    }
-                ) : <Text>No Forms Found</Text>
             }
         </ScrollView>
     </View>);
