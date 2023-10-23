@@ -80,6 +80,17 @@ const Login = (props) => {
             })
             .then((response) => {
                 console.log("response.data: ", response.data);
+                if (response.data.status_code === 401) {
+                    console.log("401 error, couldnt login")
+                    Alert.alert("Are you Sure?", "Email or Password doesnt seem to be valid. ", [{
+                        text: "Retry", onPress: () => {
+                            console.log("Retry Pressed")
+                            setWannaRetry((wannaRetry) => {
+                                return !wannaRetry;
+                            });
+                        },
+                    }]);
+                }
                 if (response['status'] === 400) {
                     Alert.alert("Are you Sure?", "Email or Password doesnt seem to be valid. ", [{
                         text: "Retry", onPress: () => {
@@ -289,15 +300,15 @@ const Login = (props) => {
                             //     <DialogDisplay/>
                             // }
                             Alert.alert("Reset Password", "We get it. Stuff Happens. We can send you an email on your registered Email with a link to reset your password. ", [{
-                                text: "Send Mail", onPress: () => {
-                                    console.log("Calling to send reset mail")
-                                    handleForgotPassword();
-                                },
-                            }, {
-                                text: "Retry", onPress: () => {
-                                    console.log("trying pass again")
-                                }, style: "cancel",
-                            },]
+                                    text: "Send Mail", onPress: () => {
+                                        console.log("Calling to send reset mail")
+                                        handleForgotPassword();
+                                    },
+                                }, {
+                                    text: "Retry", onPress: () => {
+                                        console.log("trying pass again")
+                                    }, style: "cancel",
+                                },]
                             )
                         }}
                     >

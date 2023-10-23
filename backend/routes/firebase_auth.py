@@ -104,14 +104,14 @@ async def signup( userAuthDetails: UserAuthDetails ) :
         
         # Send email verification
         link = auth.generate_email_verification_link( user.email )
-        if send_verification_mail( user.email, link = link ):
+        if send_verification_mail( user.email, link = link ) :
             return { "message" : f"User {user.uid} created. Verification email sent to {user.email}" }
         else :
             return HTTPException(
                     detail = { "message" : "Error sending verification email" },
                     status_code = 400
             )
-    except Exception as e:
+    except Exception as e :
         print( e )
         return HTTPException( detail = { "message" : str( e ) }, status_code = 400 )
 
@@ -141,6 +141,10 @@ async def login( userAuthDetails: UserAuthDetails ) :
         )
     except Exception as e :
         print( e )
+        if e.error.message == "INVALID_LOGIN_CREDENTIALS" :
+            return HTTPException(
+                    detail = { "message" : "Invalid email or password" }, status_code = 401
+            )
         return HTTPException(
                 detail = { "message" : "There was an error logging in" }, status_code = 400
         )

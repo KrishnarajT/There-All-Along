@@ -66,7 +66,6 @@ const Forms = (props) => {
             {forms ? forms.filter((form) => {
                 return form.name.toLowerCase().includes(searchQuery.toLowerCase())
             }).map((form, index) => {
-
                 return (<View
                         key={index}
                         className={`m-4 p-4 border rounded-lg ${isDark ? `bg-background_dark_color-500` : `bg-secondary_color-200`}`}
