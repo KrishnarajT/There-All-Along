@@ -9,13 +9,18 @@ import {Button, Dialog, Searchbar} from 'react-native-paper';
 import DialogDisplay from "../ui/Dialog";
 import {AuthContext} from "../../context/AuthContext";
 import Svg, {SvgUri} from "react-native-svg";
+import {FormsDataContext} from "../../context/UserFormsData";
 
 const Forms = ({navigation}) => {
     const route = useRoute();
     const serverurl = React.useContext(ServerurlContext).serverurl;
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
     const [searchQuery, setSearchQuery] = React.useState('');
-    const [forms, setForms] = React.useState(null);
+
+    const {
+        userForms, setUserForms
+    } = React.useContext(FormsDataContext);
+
     const {
         setUserAuthenticated, userToken, setUserToken, userEmail, setUserEmail, userId, setUserId,
     } = React.useContext(AuthContext);
@@ -39,24 +44,24 @@ const Forms = ({navigation}) => {
         console.log("userToken: ", userToken)
         console.log("Forms are: ", forms)
         console.log("navigation: ", navigation)
-        // get data from server using axios get request
-        axios
-            .post(serverurl + "db/get_forms", {
-                token: userToken,
-            })
-            .then((response) => {
-                console.log("response.data: ", response.data);
-                setForms(response.data);
-            })
-            .catch((error) => {
-                console.log("error: ", error);
-                // Show an alert that there is some error for 2 seconds.
-                Alert.alert("Server Error!", "Please try Later", [{
-                    text: "Sorry!! Error Connecting to the Server, Please Try again later.",
-                    onPress: () => console.log("Cancel Pressed"),
-                    style: "cancel",
-                }, {text: "OK", onPress: () => console.log("OK Pressed")},]);
-            });
+        // // get data from server using axios get request
+        // axios
+        //     .post(serverurl + "db/get_forms", {
+        //         token: userToken,
+        //     })
+        //     .then((response) => {
+        //         console.log("response.data: ", response.data);
+        //         setForms(response.data);
+        //     })
+        //     .catch((error) => {
+        //         console.log("error: ", error);
+        //         // Show an alert that there is some error for 2 seconds.
+        //         Alert.alert("Server Error!", "Please try Later", [{
+        //             text: "Sorry!! Error Connecting to the Server, Please Try again later.",
+        //             onPress: () => console.log("Cancel Pressed"),
+        //             style: "cancel",
+        //         }, {text: "OK", onPress: () => console.log("OK Pressed")},]);
+        //     });
     }, [serverurl]);
     return (<View
         className={`flex-1 ${isDark ? `bg-background_dark_color-500` : `bg-background_color-500`}`}
@@ -78,7 +83,7 @@ const Forms = ({navigation}) => {
         <ScrollView
             className="flex-1 "
         >
-            {forms ? forms.filter((form) => {
+            {userForms ? userForms.filter((form) => {
                 return form.name.toLowerCase().includes(searchQuery.toLowerCase())
             }).map((form, index) => {
                 return (<View

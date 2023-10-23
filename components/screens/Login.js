@@ -8,6 +8,7 @@ import {StatusBar} from "expo-status-bar";
 import {Button} from "react-native-ui-lib";
 import {AuthContext} from "../../context/AuthContext";
 import DialogDisplay from "../ui/Dialog";
+import {FormsDataContext} from "../../context/UserFormsData";
 
 const Login = (props) => {
     // contexts
@@ -25,6 +26,9 @@ const Login = (props) => {
     const [passwordComment, setPasswordComment] = useState("");
     const handleUserAuthenticated = route.params.handleUserAuthenticated;
 
+    const {
+        userForms, setUserForms
+    } = React.useContext(FormsDataContext);
     const handleLogin = () => {
         console.log("Login Pressed");
         console.log("email: ", email);
@@ -90,6 +94,7 @@ const Login = (props) => {
                             });
                         },
                     }]);
+                    return;
                 }
                 if (response['status'] === 400) {
                     Alert.alert("Are you Sure?", "Email or Password doesnt seem to be valid. ", [{
@@ -100,6 +105,7 @@ const Login = (props) => {
                             });
                         },
                     }]);
+                    return;
                 }
                 if (response['status'] === 200) {
                     // login successful
@@ -111,6 +117,26 @@ const Login = (props) => {
                     setUserAuthenticated(true);
                     console.log(route.params)
                     handleUserAuthenticated(true);
+
+                    // get data from server using axios get request
+                    axios
+                        .post(serverurl + "db/get_forms", {
+                            token: userToken,
+                        })
+                        .then((response) => {
+                            console.log("response.data: ", response.data);
+                            setUserForms(response.data);
+                        })
+                        .catch((error) => {
+                            console.log("error: ", error);
+                            // Show an alert that there is some error for 2 seconds.
+                            Alert.alert("Server Error!", "Please try Later", [{
+                                text: "Sorry!! Error Connecting to the Server, Please Try again later.",
+                                onPress: () => console.log("Cancel Pressed"),
+                                style: "cancel",
+                            }, {text: "OK", onPress: () => console.log("OK Pressed")},]);
+                        });
+
                 }
             })
             .catch((error) => {

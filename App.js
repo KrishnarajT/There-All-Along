@@ -24,6 +24,7 @@ import Login from "./components/screens/Login";
 import Signup from "./components/screens/Signup";
 import AuthenticatedScreens from "./AuthenticatedScreens";
 import {AuthProvider} from "./context/AuthContext";
+import {FormsDataContextProvider} from "./context/UserFormsData";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -68,22 +69,25 @@ export default function App() {
         return (<ServerurlProvider>
             <ThemeContextProvider>
                 <AuthProvider>
-                    <NavigationContainer
-                    >
-                        <Stack.Navigator initialRouteName="App"
-                                         screenOptions={{
-                                             headerShown: false,
-                                         }}
+                    <FormsDataContextProvider>
+                        <NavigationContainer
                         >
-                            <Stack.Screen
-                                name="AuthScreens"
-                                component={AuthenticatedScreens}
-                                options={{
-                                    headerShown: false,
-                                }}
-                            />
-                        </Stack.Navigator>
-                    </NavigationContainer>
+                            <Stack.Navigator initialRouteName="App"
+                                             screenOptions={{
+                                                 headerShown: false,
+                                             }}
+                            >
+                                <Stack.Screen
+                                    name="AuthScreens"
+                                    component={AuthenticatedScreens}
+                                    options={{
+                                        headerShown: false,
+                                    }}
+                                />
+                            </Stack.Navigator>
+                        </NavigationContainer>
+                    </FormsDataContextProvider>
+
                 </AuthProvider>
             </ThemeContextProvider>
         </ServerurlProvider>)
@@ -93,33 +97,35 @@ export default function App() {
     return <ServerurlProvider>
         <ThemeContextProvider>
             <AuthProvider>
-                <NavigationContainer>
+                <FormsDataContextProvider>
 
-                    <Stack.Navigator initialRouteName="Login"
-                                     screenOptions={{
-                                         headerShown: false,
-                                         handleUserAuthenticated: handleUserAuthenticated,
-                                     }}
-                    >
-                        <Stack.Screen
-                            name="Login"
-                            component={Login}
-                            options={{
-                                headerShown: false,
-                            }}
-                            initialParams={{
-                                data: "hi", handleUserAuthenticated: handleUserAuthenticated,
-                            }}
-                        />
-                        <Stack.Screen
-                            name="Signup"
-                            component={Signup}
-                            options={{
-                                headerShown: false,
-                            }}
-                        />
-                    </Stack.Navigator>
-                </NavigationContainer>
+                    <NavigationContainer>
+
+                        <Stack.Navigator initialRouteName="Login"
+                                         screenOptions={{
+                                             headerShown: false, handleUserAuthenticated: handleUserAuthenticated,
+                                         }}
+                        >
+                            <Stack.Screen
+                                name="Login"
+                                component={Login}
+                                options={{
+                                    headerShown: false,
+                                }}
+                                initialParams={{
+                                    data: "hi", handleUserAuthenticated: handleUserAuthenticated,
+                                }}
+                            />
+                            <Stack.Screen
+                                name="Signup"
+                                component={Signup}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </FormsDataContextProvider>
             </AuthProvider>
         </ThemeContextProvider>
     </ServerurlProvider>
