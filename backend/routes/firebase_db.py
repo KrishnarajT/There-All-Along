@@ -31,6 +31,7 @@ class UserFormInfo( BaseModel ) :
 
 class CreateFormInfo( BaseModel ) :
     form_name: str
+    form_description: str
     token: str
     form_attributes: List[ str ]
 
@@ -99,6 +100,7 @@ async def create_form( createFormInfo: CreateFormInfo ) :
     token = createFormInfo.token
     form_name = createFormInfo.form_name
     form_attributes = createFormInfo.form_attributes
+    form_description = createFormInfo.form_description
     
     try :
         user = auth.verify_id_token( token )
@@ -110,6 +112,7 @@ async def create_form( createFormInfo: CreateFormInfo ) :
         # Set the form data using the generated key
         form_ref.set( {
             "name" : form_name,
+            "description" : form_description,
             "attributes" : form_attributes,
             "data" : None
         } )
@@ -141,6 +144,7 @@ async def update_form( updateFormInfo: CreateFormInfo ) :
     form_id = updateFormInfo.form_id
     form_name = updateFormInfo.form_name
     form_attributes = updateFormInfo.form_attributes
+    form_description = updateFormInfo.form_description
     
     try :
         user = auth.verify_id_token( token )
@@ -158,7 +162,8 @@ async def update_form( updateFormInfo: CreateFormInfo ) :
         # Perform the update using .update()
         forms_ref.child( form_id ).update( {
             "name" : form_name,
-            "attributes" : form_attributes
+            "attributes" : form_attributes,
+            "description" : form_description
         } )
         
         return { "message" : "Form updated successfully" }

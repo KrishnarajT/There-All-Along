@@ -8,10 +8,10 @@ import {StatusBar} from "expo-status-bar";
 import {Button, Dialog, Searchbar} from 'react-native-paper';
 import DialogDisplay from "../ui/Dialog";
 import {AuthContext} from "../../context/AuthContext";
+import Svg, {SvgUri} from "react-native-svg";
 
-const Forms = (props) => {
+const Forms = ({navigation}) => {
     const route = useRoute();
-    const navigation = useNavigation();
     const serverurl = React.useContext(ServerurlContext).serverurl;
     const {isDark, toggleDarkMode} = React.useContext(ThemeContext);
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -20,10 +20,25 @@ const Forms = (props) => {
         setUserAuthenticated, userToken, setUserToken, userEmail, setUserEmail, userId, setUserId,
     } = React.useContext(AuthContext);
 
+    const handleOpenPress = (formId, formName, formAttributes, formData) => {
+        console.log("handleOpenPress: ", formId);
+        console.log("handleOpenPress: ", formName);
+        console.log("handleOpenPress: ", formAttributes);
+        console.log("handleOpenPress: ", formData);
+
+        navigation.navigate("FormScreen", {
+            formId: formId,
+            formName: formName,
+            formAttributes: formAttributes,
+            formData: formData
+        })
+    }
+
     React.useEffect(() => {
         console.log("server Url: ", serverurl);
         console.log("userToken: ", userToken)
         console.log("Forms are: ", forms)
+        console.log("navigation: ", navigation)
         // get data from server using axios get request
         axios
             .post(serverurl + "db/get_forms", {
@@ -67,32 +82,35 @@ const Forms = (props) => {
                 return form.name.toLowerCase().includes(searchQuery.toLowerCase())
             }).map((form, index) => {
                 return (<View
-                        key={index}
-                        className={`m-4 p-4 border rounded-lg ${isDark ? `bg-background_dark_color-500` : `bg-secondary_color-200`}`}
+                    key={index}
+                    className={`m-4 p-4 rounded-lg ${isDark ? `bg-background_dark_color-500` : `bg-secondary_color-200`}`}
+                >
+                    <Text
+                        className={`text-lg font-bold ${isDark ? `text-white` : `text-black`}`}
                     >
-                        <Text
-                            className={`text-lg font-bold ${isDark ? `text-white` : `text-black`}`}
-                        >
-                            {form.name}
-                        </Text>
-                        <Text
-                            className={`text-sm ${isDark ? `text-white` : `text-black`}`}
-                        >
-                            {form.description}
-                        </Text>
-                        <Button
-                            mode="contained"
-                            onPress={() => {
-                                navigation.navigate("Form", {
-                                    formId: form.id,
-                                })
-                            }}
-                            className={`mt-4 ${isDark ? `bg-primary_color-500` : `bg-primary_color-300`}`}
-                        >
-                            Open
-                        </Button>
-                    </View>)
-            }) : <Text>No Forms Found</Text>
+                        {form.name}
+                    </Text>
+                    <Text
+                        className={`text-sm ${isDark ? `text-white` : `text-black`}`}
+                    >
+                        {form.description ? form.description : "No Description Provided."}
+                    </Text>
+                    <Button
+                        mode="contained"
+                        onPress={() => {
+                            handleOpenPress(form.id, form.name, form.attributes, form.data)
+                        }}
+                        className={`mt-4 ${isDark ? `bg-primary_color-500` : `bg-primary_color-300`}`}
+                    >
+                        Open
+                    </Button>
+                </View>)
+            }) : <Text
+                className={`text-lg text-center self-center font-bold text-center ${isDark ? `text-white` : `text-black`}`}
+            >
+                No Forms Found.
+            </Text>
+
 
             }
         </ScrollView>
