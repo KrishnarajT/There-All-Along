@@ -42,7 +42,7 @@ const Forms = ({navigation}) => {
     React.useEffect(() => {
         console.log("server Url: ", serverurl);
         console.log("userToken: ", userToken)
-        console.log("Forms are: ", forms)
+        console.log("Forms are: ", userForms)
         console.log("navigation: ", navigation)
         // // get data from server using axios get request
         // axios

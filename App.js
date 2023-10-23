@@ -98,9 +98,7 @@ export default function App() {
         <ThemeContextProvider>
             <AuthProvider>
                 <FormsDataContextProvider>
-
                     <NavigationContainer>
-
                         <Stack.Navigator initialRouteName="Login"
                                          screenOptions={{
                                              headerShown: false, handleUserAuthenticated: handleUserAuthenticated,

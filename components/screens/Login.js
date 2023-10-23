@@ -117,11 +117,13 @@ const Login = (props) => {
                     setUserAuthenticated(true);
                     console.log(route.params)
                     handleUserAuthenticated(true);
+                    console.log("trying to get user forms data. ")
 
+                    const user_token = response.data['Token'];
                     // get data from server using axios get request
                     axios
-                        .post(serverurl + "db/get_forms", {
-                            token: userToken,
+                        .post(serverUrl + "db/get_forms", {
+                            token: user_token,
                         })
                         .then((response) => {
                             console.log("response.data: ", response.data);
@@ -129,13 +131,8 @@ const Login = (props) => {
                         })
                         .catch((error) => {
                             console.log("error: ", error);
-                            // Show an alert that there is some error for 2 seconds.
-                            Alert.alert("Server Error!", "Please try Later", [{
-                                text: "Sorry!! Error Connecting to the Server, Please Try again later.",
-                                onPress: () => console.log("Cancel Pressed"),
-                                style: "cancel",
-                            }, {text: "OK", onPress: () => console.log("OK Pressed")},]);
                         });
+
 
                 }
             })
@@ -183,7 +180,7 @@ const Login = (props) => {
                 }
             })
             .catch((error) => {
-                console.log("error: ", error);
+                console.log("error: ", error.message);
                 // Show an alert that there is error connecting to the server.
                 Alert.alert("Server Error!", "Sorry! Error Connecting to the Server, Please Try again later.", [{
                     text: "Retry", onPress: () => {
@@ -216,7 +213,7 @@ const Login = (props) => {
                 console.log("Connection Established to the Server.");
             })
             .catch((error) => {
-                console.log("error: ", error);
+                console.log("error: ", error.message);
 
 
                 // Show an alert that there is error connecting to the server.

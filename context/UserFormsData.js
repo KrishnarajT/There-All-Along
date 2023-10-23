@@ -3,14 +3,14 @@ import React from "react";
 export const FormsDataContext = React.createContext();
 
 export const FormsDataContextProvider = ({ children }) => {
-    const [useForms, setUserForms] = React.useState(
+    const [userForms, setUserForms] = React.useState(
         []
     );
 
     return (
         <FormsDataContext.Provider
             value={{
-                useForms,
+                userForms,
                 setUserForms,
             }}
         >

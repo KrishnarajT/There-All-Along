@@ -4,7 +4,7 @@ export const ServerurlContext = React.createContext();
 
 export const ServerurlProvider = ({ children }) => {
 	const [serverurl, setServerurl] = React.useState(
-		"https://long-beret-toad.cyclic.app/"
+		"http://192.168.1.39:8000/"
 	);
 
 	return (
