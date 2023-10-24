@@ -1,0 +1,11 @@
+Your selected colors:
+
+    Text: #eaeaf6 (rgb(234, 234, 246) - hsl(240, 40%, 94%))
+    Background: #151118 (rgb(21, 17, 24) - hsl(274, 17%, 8%))
+    Primary: #c7c7fa (rgb(199, 199, 250) - hsl(240, 84%, 88%))
+    Secondary: #6251c2 (rgb(98, 81, 194) - hsl(249, 48%, 54%))
+    Accent: #6fbe96 (rgb(111, 190, 150) - hsl(150, 38%, 59%))
+
+Realtime Colors link for selected colors: https://www.realtimecolors.com/?colors=eaeaf6-151118-c7c7fa-6251c2-6fbe96&fonts=Poppins-Poppins
+
+Thanks for using RealtimeColors.com!
