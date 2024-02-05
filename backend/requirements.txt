@@ -10,7 +10,7 @@ Deprecated==1.2.14
 dnspython==2.3.0
 email-validator==2.0.0.post2
 exceptiongroup==1.1.1
-fastapi==0.96.0
+fastapi==0.109.1
 firebase-admin==6.2.0
 gcloud==0.18.3
 google-api-core==2.12.0
