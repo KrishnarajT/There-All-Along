@@ -55,7 +55,7 @@ pytest==7.4.2
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 python-jwt==4.0.0
-python-multipart==0.0.6
+python-multipart==0.0.7
 pytz==2023.3.post1
 PyYAML==6.0
 requests==2.29.0
